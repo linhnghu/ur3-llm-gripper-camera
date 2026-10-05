@@ -227,16 +227,3 @@ PYTHONPATH="src/ur3_llm_control:$PYTHONPATH" /usr/bin/python3 -m pytest src/ur3_
 | `No fresh stable camera state; missing [...]` | Kiểm tra ảnh `Table Camera`, vị trí vật và vật bị che. Khi đang giữ vật trước place, code có cơ chế đổi tư thế để nhìn lại; vẫn thiếu dữ liệu thì task dừng |
 | Session ở `FAULT` | Kiểm tra vật robot đang giữ, dừng launch, build/source nếu vừa sửa code rồi khởi động lại mô phỏng |
 | Gripper đóng nhưng vật không đi theo | Kiểm tra tiếp xúc hai ngón và physics ACK `attached`; chỉ controller báo thành công chưa chứng minh đã gắp được vật |
-
-## Demo vẽ chữ L — Bài trước
-
-Chạy riêng sau khi dừng phiên Bài 03:
-
-```bash
-source /opt/ros/humble/setup.bash
-source ~/workspaces/ur_gz/install/setup.bash
-ros2 launch ur3_draw_letter draw_letter.launch.py \
-  ur_type:=ur3e gazebo_gui:=true launch_rviz:=true
-```
-
-RViz hiển thị đường chữ L và quỹ đạo đầu công tác; Gazebo hiển thị robot thực thi.
