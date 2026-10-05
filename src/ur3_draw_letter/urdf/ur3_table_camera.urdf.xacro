@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur">
+  <xacro:arg name="initial_positions_file" default="$(find ur3_draw_letter)/config/camera_initial_positions.yaml"/>
+  <xacro:arg name="enable_contact_grasp" default="true"/>
+  <xacro:include filename="$(find ur3_draw_letter)/urdf/ur.urdf.xacro"/>
+</robot>

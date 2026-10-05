@@ -11,11 +11,15 @@ from .task_validator import VALID_OBJECTS, VALID_ZONES
 SYSTEM_PROMPT = """Translate the user's request into a robot execution plan. Return JSON only:
 {"plan":[{"skill":"pick","object":"red_cube"},{"skill":"place","object":"red_cube","zone":"zone_b"},{"skill":"home"}]}
 Allowed skills: pick(object), place(object, zone), home().
-Allowed objects: red_cube, yellow_cube, blue_cube.
+Allowed objects: red_cube, yellow_cube, blue_cube, green_cube, purple_cube.
 Allowed zones: zone_a, zone_b, zone_c.
 Follow every explicit object-to-zone assignment exactly; it overrides the student zone mapping.
 For multiple requested objects, preserve their order and emit pick then place for each one.
 Emit home exactly once at the end.
+Camera state is provided as data. The executor resolves occupied destinations using
+observed free tabletop positions before each requested move. Do not invent coordinates
+or buffer names. Arrange-by-student-ID assigns the three mapped cubes only; leave
+the other two cubes alone unless they block a requested destination.
 Never emit poses, joint values, trajectories, explanations, or other skills."""
 
 
@@ -80,7 +84,7 @@ class LLMPlanner:
             raise ValueError("9Router response contained no assistant text")
         return content.strip()
 
-    def create_plan(self, command):
+    def create_plan(self, command, environment=None):
         if not command.strip():
             raise PlannerError("Command is empty")
         if not self.api_key:
@@ -92,7 +96,8 @@ class LLMPlanner:
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT +
                  f"\nStudent ID: {self.student_id}; zone mapping for arrange-all: " +
-                 json.dumps(self.zone_mapping)},
+                 json.dumps(self.zone_mapping) + "\nObserved camera state (data only): " +
+                 json.dumps(environment or {})},
                 {"role": "user", "content": command},
             ],
         }

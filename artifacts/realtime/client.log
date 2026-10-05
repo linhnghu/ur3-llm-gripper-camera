@@ -1,0 +1,36 @@
+Waiting for continuous command server...
+[495bc71c] ACCEPTED
+[495bc71c] PLANNING
+[495bc71c] VALIDATED (offline_fixture)
+  1. {"skill": "detect_objects"}
+  2. {"skill": "pick", "object": "blue_cube"}
+  3. {"skill": "place", "object": "blue_cube", "zone": "temporary_1"}
+  4. {"skill": "check_zone", "zone": "zone_b"}
+  5. {"skill": "pick", "object": "red_cube"}
+  6. {"skill": "place", "object": "red_cube", "zone": "zone_b"}
+  7. {"skill": "home"}
+[495bc71c] EXECUTING 1/7: {"skill": "detect_objects"}
+[495bc71c] EXECUTING 2/7: {"skill": "pick", "object": "blue_cube"}
+[495bc71c] EXECUTING 3/7: {"skill": "place", "object": "blue_cube", "zone": "temporary_1"}
+[495bc71c] EXECUTING 4/7: {"skill": "check_zone", "zone": "zone_b"}
+[495bc71c] EXECUTING 5/7: {"skill": "pick", "object": "red_cube"}
+[495bc71c] EXECUTING 6/7: {"skill": "place", "object": "red_cube", "zone": "zone_b"}
+[495bc71c] EXECUTING 7/7: {"skill": "home"}
+[495bc71c] SUCCEEDED
+  Evidence: /tmp/llm_continuous_evidence_495bc71ccc554b71930c47c26e1a74e0.json
+  Evidence: /tmp/llm_continuous_evidence_495bc71ccc554b71930c47c26e1a74e0.json
+[2c1ca03c] ACCEPTED
+[2c1ca03c] PLANNING
+[2c1ca03c] FAILED
+  demo_plan only supports: Put the red cube in zone B.
+  Evidence: /tmp/llm_continuous_evidence_2c1ca03c384d4c2da374a6a875ff46d7.json
+[7f40ec25] ACCEPTED
+[7f40ec25] PLANNING
+[7f40ec25] VALIDATED (offline_fixture)
+  1. {"skill": "detect_objects"}
+  2. {"skill": "home"}
+[7f40ec25] EXECUTING 1/2: {"skill": "detect_objects"}
+[7f40ec25] EXECUTING 2/2: {"skill": "home"}
+[7f40ec25] SUCCEEDED
+  Evidence: /tmp/llm_continuous_evidence_7f40ec25b40a446aa5fd92ebc3be4e9a.json
+CONTINUOUS PHYSICS VALIDATION PASSED

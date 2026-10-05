@@ -1,0 +1,698 @@
+[INFO] [launch]: All log files can be found below /tmp/llm_continuous_roslog/2026-10-05-13-18-12-594004-linh-IdeaPad-Gaming-3-15ACH6-28504
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [robot_state_publisher-1]: process started with pid [28519]
+[INFO] [spawner-2]: process started with pid [28521]
+[INFO] [create-3]: process started with pid [28523]
+[INFO] [ign gazebo-4]: process started with pid [28525]
+[INFO] [parameter_bridge-5]: process started with pid [28527]
+[INFO] [move_group-6]: process started with pid [28530]
+[INFO] [parameter_bridge-7]: process started with pid [28532]
+[robot_state_publisher-1] [INFO] [1791181093.872552020] [robot_state_publisher]: got segment base
+[robot_state_publisher-1] [INFO] [1791181093.872737657] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1791181093.872758260] [robot_state_publisher]: got segment base_link_inertia
+[robot_state_publisher-1] [INFO] [1791181093.872770132] [robot_state_publisher]: got segment flange
+[robot_state_publisher-1] [INFO] [1791181093.872782564] [robot_state_publisher]: got segment forearm_link
+[robot_state_publisher-1] [INFO] [1791181093.872794996] [robot_state_publisher]: got segment ft_frame
+[robot_state_publisher-1] [INFO] [1791181093.872807288] [robot_state_publisher]: got segment gripper_base_link
+[robot_state_publisher-1] [INFO] [1791181093.872819300] [robot_state_publisher]: got segment ground_plane
+[robot_state_publisher-1] [INFO] [1791181093.872831662] [robot_state_publisher]: got segment left_finger_link
+[robot_state_publisher-1] [INFO] [1791181093.872844513] [robot_state_publisher]: got segment right_finger_link
+[robot_state_publisher-1] [INFO] [1791181093.872856456] [robot_state_publisher]: got segment shoulder_link
+[robot_state_publisher-1] [INFO] [1791181093.872867840] [robot_state_publisher]: got segment tool0
+[robot_state_publisher-1] [INFO] [1791181093.872880411] [robot_state_publisher]: got segment upper_arm_link
+[robot_state_publisher-1] [INFO] [1791181093.872892633] [robot_state_publisher]: got segment world
+[robot_state_publisher-1] [INFO] [1791181093.872905554] [robot_state_publisher]: got segment wrist_1_link
+[robot_state_publisher-1] [INFO] [1791181093.872917077] [robot_state_publisher]: got segment wrist_2_link
+[robot_state_publisher-1] [INFO] [1791181093.872928322] [robot_state_publisher]: got segment wrist_3_link
+[create-3] [INFO] [1791181093.899562480] [ros_gz_sim]: Requesting list of world names.
+[move_group-6] [WARN] [1791181093.908365617] [move_group.move_group]: Falling back to using the the move_group node namespace (deprecated behavior).
+[move_group-6] [INFO] [1791181093.912665008] [moveit_rdf_loader.rdf_loader]: Loaded robot model in 0 seconds
+[move_group-6] [INFO] [1791181093.912754684] [moveit_robot_model.robot_model]: Loading robot model 'ur'...
+[move_group-6] [INFO] [1791181093.912771725] [moveit_robot_model.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[parameter_bridge-5] [INFO] [1791181093.919700548] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.931851008] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/table_camera/image (ignition.msgs.Image) -> /table_camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.935753355] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ur3_llm/grasp/red_cube/state (ignition.msgs.StringMsg) -> /ur3_llm/grasp/red_cube/state (std_msgs/msg/String)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.937508451] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/red_cube/attach (std_msgs/msg/Empty) -> /ur3_llm/grasp/red_cube/attach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.939127218] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/red_cube/detach (std_msgs/msg/Empty) -> /ur3_llm/grasp/red_cube/detach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.939906710] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ur3_llm/grasp/yellow_cube/state (ignition.msgs.StringMsg) -> /ur3_llm/grasp/yellow_cube/state (std_msgs/msg/String)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.940679777] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/yellow_cube/attach (std_msgs/msg/Empty) -> /ur3_llm/grasp/yellow_cube/attach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.941516398] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/yellow_cube/detach (std_msgs/msg/Empty) -> /ur3_llm/grasp/yellow_cube/detach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.941993410] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ur3_llm/grasp/blue_cube/state (ignition.msgs.StringMsg) -> /ur3_llm/grasp/blue_cube/state (std_msgs/msg/String)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.942589430] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/blue_cube/attach (std_msgs/msg/Empty) -> /ur3_llm/grasp/blue_cube/attach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.943251100] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/blue_cube/detach (std_msgs/msg/Empty) -> /ur3_llm/grasp/blue_cube/detach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.943793553] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ur3_llm/grasp/green_cube/state (ignition.msgs.StringMsg) -> /ur3_llm/grasp/green_cube/state (std_msgs/msg/String)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.944794719] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/green_cube/attach (std_msgs/msg/Empty) -> /ur3_llm/grasp/green_cube/attach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.945728838] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/green_cube/detach (std_msgs/msg/Empty) -> /ur3_llm/grasp/green_cube/detach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.946894898] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ur3_llm/grasp/purple_cube/state (ignition.msgs.StringMsg) -> /ur3_llm/grasp/purple_cube/state (std_msgs/msg/String)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.948003548] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/purple_cube/attach (std_msgs/msg/Empty) -> /ur3_llm/grasp/purple_cube/attach (ignition.msgs.Empty)] (Lazy 0)
+[parameter_bridge-7] [INFO] [1791181093.948570585] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/ur3_llm/grasp/purple_cube/detach (std_msgs/msg/Empty) -> /ur3_llm/grasp/purple_cube/detach (ignition.msgs.Empty)] (Lazy 0)
+[move_group-6] [INFO] [1791181093.975545635] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-6] [INFO] [1791181093.975800414] [moveit.ros_planning_interface.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-6] [INFO] [1791181093.976452097] [moveit_ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-6] [INFO] [1791181093.976842088] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-6] [INFO] [1791181093.976863110] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting planning scene monitor
+[move_group-6] [INFO] [1791181093.977147640] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-6] [INFO] [1791181093.977164891] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-6] [INFO] [1791181093.977523383] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-6] [INFO] [1791181093.977814689] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-6] [WARN] [1791181093.977994459] [moveit.ros.occupancy_map_monitor.middleware_handle]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-6] [ERROR] [1791181093.978012477] [moveit.ros.occupancy_map_monitor.middleware_handle]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-6] [INFO] [1791181093.984153009] [moveit.ros_planning_interface.moveit_cpp]: Loading planning pipeline 'move_group'
+[move_group-6] [INFO] [1791181093.999984771] [moveit.ros_planning.planning_pipeline]: Using planning interface 'OMPL'
+[move_group-6] [INFO] [1791181094.002778118] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.path_tolerance' was not set. Using default value: 0.100000
+[move_group-6] [INFO] [1791181094.002822956] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.resample_dt' was not set. Using default value: 0.100000
+[move_group-6] [INFO] [1791181094.002829242] [moveit_ros.add_time_optimal_parameterization]: Param 'move_group.min_angle_change' was not set. Using default value: 0.001000
+[move_group-6] [INFO] [1791181094.002845305] [moveit_ros.fix_workspace_bounds]: Param 'move_group.default_workspace_bounds' was not set. Using default value: 10.000000
+[move_group-6] [INFO] [1791181094.002862416] [moveit_ros.fix_start_state_bounds]: Param 'move_group.start_state_max_bounds_error' was set to 0.100000
+[move_group-6] [INFO] [1791181094.002869051] [moveit_ros.fix_start_state_bounds]: Param 'move_group.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-6] [INFO] [1791181094.002880295] [moveit_ros.fix_start_state_collision]: Param 'move_group.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-6] [INFO] [1791181094.002887419] [moveit_ros.fix_start_state_collision]: Param 'move_group.jiggle_fraction' was not set. Using default value: 0.020000
+[move_group-6] [INFO] [1791181094.002894124] [moveit_ros.fix_start_state_collision]: Param 'move_group.max_sampling_attempts' was not set. Using default value: 100
+[move_group-6] [INFO] [1791181094.002908930] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Add Time Optimal Parameterization'
+[move_group-6] [INFO] [1791181094.002917450] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Workspace Bounds'
+[move_group-6] [INFO] [1791181094.002925133] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Bounds'
+[move_group-6] [INFO] [1791181094.002930930] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State In Collision'
+[move_group-6] [INFO] [1791181094.002936098] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Path Constraints'
+[move_group-6] [INFO] [1791181094.033989564] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for scaled_joint_trajectory_controller
+[move_group-6] [INFO] [1791181094.037789106] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for joint_trajectory_controller
+[move_group-6] [INFO] [1791181094.038010012] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181094.038053732] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181094.038497500] [moveit_ros.trajectory_execution_manager]: Trajectory execution is not managing controllers
+[move_group-6] [INFO] [1791181094.038518452] [move_group.move_group]: MoveGroup debug mode is ON
+[move_group-6] [INFO] [1791181094.056882357] [move_group.move_group]: 
+[move_group-6] 
+[move_group-6] ********************************************************
+[move_group-6] * MoveGroup using: 
+[move_group-6] *     - ApplyPlanningSceneService
+[move_group-6] *     - ClearOctomapService
+[move_group-6] *     - CartesianPathService
+[move_group-6] *     - ExecuteTrajectoryAction
+[move_group-6] *     - GetPlanningSceneService
+[move_group-6] *     - KinematicsService
+[move_group-6] *     - MoveAction
+[move_group-6] *     - MotionPlanService
+[move_group-6] *     - QueryPlannersService
+[move_group-6] *     - StateValidationService
+[move_group-6] ********************************************************
+[move_group-6] 
+[move_group-6] [INFO] [1791181094.056922236] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[move_group-6] [INFO] [1791181094.056931805] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context initialization complete
+[move_group-6] [96mLoading 'move_group/ApplyPlanningSceneService'...
+[move_group-6] [0m[96mLoading 'move_group/ClearOctomapService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupCartesianPathService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupGetPlanningSceneService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupKinematicsService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupMoveAction'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupPlanService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupQueryPlannersService'...
+[move_group-6] [0m[96mLoading 'move_group/MoveGroupStateValidationService'...
+[move_group-6] [0m[92m
+[move_group-6] You can start planning now!
+[move_group-6] 
+[spawner-2] [INFO] [1791181094.223873841] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mIgnition Gazebo Server v[0m[1;32m6.18.0[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mLoading SDF world file[[0m[1;32m/home/linh/workspaces/ur_gz/install/ur3_llm_control/share/ur3_llm_control/worlds/task_world.sdf[0m[1;32m].[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing entity system service on [[0m[1;32m/[0m[1;32mentity/system/add[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;36m[Dbg] [Physics.cc:804] [0m[1;36mLoaded [[0m[1;36mignition::physics::dartsim::Plugin[0m[1;36m] from library [[0m[1;36m/usr/lib/x86_64-linux-gnu/ign-physics-5/engine-plugins/libignition-physics-dartsim-plugin.so[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mignition::gazebo::systems::Physics[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mCreate service on [[0m[1;32m/world/ur3_llm_task_world/create[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mRemove service on [[0m[1;32m/world/ur3_llm_task_world/remove[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPose service on [[0m[1;32m/world/ur3_llm_task_world/set_pose[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPose service on [[0m[1;32m/world/ur3_llm_task_world/set_pose_vector[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mLight configuration service on [[0m[1;32m/world/ur3_llm_task_world/light_config[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPhysics service on [[0m[1;32m/world/ur3_llm_task_world/set_physics[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mSphericalCoordinates service on [[0m[1;32m/world/ur3_llm_task_world/set_spherical_coordinates[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mEnable collision service on [[0m[1;32m/world/ur3_llm_task_world/enable_collision[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mDisable collision service on [[0m[1;32m/world/ur3_llm_task_world/disable_collision[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mMaterial service on [[0m[1;32m/world/ur3_llm_task_world/visual_config[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mMaterial service on [[0m[1;32m/world/ur3_llm_task_world/wheel_slip[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mignition::gazebo::systems::UserCommands[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mignition::gazebo::systems::SceneBroadcaster[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mignition::gazebo::systems::Contact[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:506] [0m[1;36mConfiguring Sensors system[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:431] [0m[1;36mSensorsPrivate::Run[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mignition::gazebo::systems::Sensors[0m[1;36m] for entity [[0m[1;36m1[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:411] [0m[1;36m[Dbg] [Sensors.cc:411] [0m[1;36mSensorsPrivate::RenderThread started[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:258] [0m[1;36mWaiting for init[0m[1;36m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mLoaded level [[0m[1;32m3[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing world controls on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/control], [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/control/state] and [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/playback/control][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing GUI information on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mgui/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mWorld [[0m[1;32mur3_llm_task_world[0m[1;32m] initialized with [[0m[1;32mdefault_physics[0m[1;32m] physics profile.[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing world SDF generation service on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mgenerate_world_sdf[0m[1;32m][0m[1;32m[0m
+[create-3] [INFO] [1791181094.557223492] [ros_gz_sim]: Requested creation of entity.
+[create-3] [INFO] [1791181094.557270355] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-3]: process has finished cleanly [pid 28523]
+[ign gazebo-4] [INFO] [1791181096.156657497] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_state_publisher
+[ign gazebo-4] [INFO] [1791181096.156689973] [GazeboSimROS2ControlPlugin]: robot_param_node is robot_description
+[ign gazebo-4] [INFO] [1791181096.520699469] [gz_ros2_control]: connected to service!! robot_state_publisher asking for robot_description
+[ign gazebo-4] [INFO] [1791181096.521510668] [gz_ros2_control]: Received URDF from param server
+[ign gazebo-4] [INFO] [1791181096.523162330] [gz_ros2_control]: [gz_ros2_control] Fixed joint ['base_joint'] (Entity='74') is skipped.
+[ign gazebo-4] [INFO] [1791181096.527842842] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-4] [INFO] [1791181096.527914289] [gz_ros2_control]: Loading joint: shoulder_pan_joint
+[ign gazebo-4] [INFO] [1791181096.527935800] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.527959755] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.527978612] [gz_ros2_control]: 			 found initial value: -1.570000
+[ign gazebo-4] [INFO] [1791181096.527995234] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528007945] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528021215] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528030853] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528047405] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528065634] [gz_ros2_control]: Loading joint: shoulder_lift_joint
+[ign gazebo-4] [INFO] [1791181096.528079811] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.528091894] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528101322] [gz_ros2_control]: 			 found initial value: -1.200000
+[ign gazebo-4] [INFO] [1791181096.528112776] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528123392] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528135265] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528147627] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528163341] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528178566] [gz_ros2_control]: Loading joint: elbow_joint
+[ign gazebo-4] [INFO] [1791181096.528190160] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.528197633] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528204826] [gz_ros2_control]: 			 found initial value: 1.000000
+[ign gazebo-4] [INFO] [1791181096.528214953] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528222566] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528233321] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528241074] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528249804] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528262445] [gz_ros2_control]: Loading joint: wrist_1_joint
+[ign gazebo-4] [INFO] [1791181096.528272362] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.528281022] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528289683] [gz_ros2_control]: 			 found initial value: -1.370000
+[ign gazebo-4] [INFO] [1791181096.528298622] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528306724] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528315943] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528324952] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528336755] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528352609] [gz_ros2_control]: Loading joint: wrist_2_joint
+[ign gazebo-4] [INFO] [1791181096.528363504] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.528372584] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528385015] [gz_ros2_control]: 			 found initial value: -1.570000
+[ign gazebo-4] [INFO] [1791181096.528414139] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528426920] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528439910] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528451224] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528471338] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528493617] [gz_ros2_control]: Loading joint: wrist_3_joint
+[ign gazebo-4] [INFO] [1791181096.528510519] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.528525465] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528538874] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-4] [INFO] [1791181096.528551515] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528562899] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.528574493] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.528596283] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.528609274] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.528702301] [resource_manager]: Initialize hardware 'ur' 
+[ign gazebo-4] [WARN] [1791181096.528726117] [gz_ros2_control]: The ign_ros2_control plugin got renamed to gz_ros2_control.
+[ign gazebo-4] Update the <ros2_control> tag and gazebo plugin to
+[ign gazebo-4] <hardware>
+[ign gazebo-4]   <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+[ign gazebo-4] </hardware>
+[ign gazebo-4] <gazebo>
+[ign gazebo-4]   <plugin filename="gz_ros2_control-system"name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+[ign gazebo-4]     ...
+[ign gazebo-4]   </plugin>
+[ign gazebo-4] </gazebo>
+[ign gazebo-4] [INFO] [1791181096.529340436] [resource_manager]: Successful initialization of hardware 'ur'
+[ign gazebo-4] [INFO] [1791181096.529395121] [resource_manager]: 'configure' hardware 'ur' 
+[ign gazebo-4] [INFO] [1791181096.529403851] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-4] [INFO] [1791181096.529425641] [resource_manager]: Successful 'configure' of hardware 'ur'
+[ign gazebo-4] [INFO] [1791181096.529438143] [resource_manager]: 'activate' hardware 'ur' 
+[ign gazebo-4] [INFO] [1791181096.529449038] [resource_manager]: Successful 'activate' of hardware 'ur'
+[ign gazebo-4] [INFO] [1791181096.529560783] [gz_ros2_control]: The position_proportional_gain has been set to: 0.1
+[ign gazebo-4] [INFO] [1791181096.529593468] [gz_ros2_control]: Loading joint: left_finger_joint
+[ign gazebo-4] [INFO] [1791181096.529605621] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.529615119] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.529624198] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-4] [INFO] [1791181096.529635652] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.529651785] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.529665684] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.529681328] [gz_ros2_control]: Loading joint: right_finger_joint
+[ign gazebo-4] [INFO] [1791181096.529692433] [gz_ros2_control]: 	State:
+[ign gazebo-4] [INFO] [1791181096.529700464] [gz_ros2_control]: 		 position
+[ign gazebo-4] [INFO] [1791181096.529711429] [gz_ros2_control]: 			 found initial value: 0.000000
+[ign gazebo-4] [INFO] [1791181096.529724420] [gz_ros2_control]: 		 velocity
+[ign gazebo-4] [INFO] [1791181096.529736292] [gz_ros2_control]: 	Command:
+[ign gazebo-4] [INFO] [1791181096.529747677] [gz_ros2_control]: 		 effort
+[ign gazebo-4] [INFO] [1791181096.529768629] [resource_manager]: Initialize hardware 'gripper_system' 
+[ign gazebo-4] [WARN] [1791181096.529817447] [gz_ros2_control]: The ign_ros2_control plugin got renamed to gz_ros2_control.
+[ign gazebo-4] Update the <ros2_control> tag and gazebo plugin to
+[ign gazebo-4] <hardware>
+[ign gazebo-4]   <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+[ign gazebo-4] </hardware>
+[ign gazebo-4] <gazebo>
+[ign gazebo-4]   <plugin filename="gz_ros2_control-system"name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+[ign gazebo-4]     ...
+[ign gazebo-4]   </plugin>
+[ign gazebo-4] </gazebo>
+[ign gazebo-4] [INFO] [1791181096.529836304] [resource_manager]: Successful initialization of hardware 'gripper_system'
+[ign gazebo-4] [INFO] [1791181096.529853415] [resource_manager]: 'configure' hardware 'gripper_system' 
+[ign gazebo-4] [INFO] [1791181096.529860888] [gz_ros2_control]: System Successfully configured!
+[ign gazebo-4] [INFO] [1791181096.529875066] [resource_manager]: Successful 'configure' of hardware 'gripper_system'
+[ign gazebo-4] [INFO] [1791181096.529883796] [resource_manager]: 'activate' hardware 'gripper_system' 
+[ign gazebo-4] [INFO] [1791181096.529890920] [resource_manager]: Successful 'activate' of hardware 'gripper_system'
+[ign gazebo-4] [INFO] [1791181096.529898951] [gz_ros2_control]: Loading controller_manager
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing world names on [[0m[1;32m/gazebo/worlds[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mResource path add service on [[0m[1;32m/gazebo/resource_paths/add[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mResource path get service on [[0m[1;32m/gazebo/resource_paths/get[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mResource path resolve service on [[0m[1;32m/gazebo/resource_paths/resolve[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mResource paths published on [[0m[1;32m/gazebo/resource_paths[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServer control service on [[0m[1;32m/server_control[0m[1;32m].[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mFound no publishers on /stats, adding root stats topic[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mFound no publishers on /clock, adding root clock topic[0m[1;32m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:501] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m4[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mign_ros2_control::IgnitionROS2ControlPlugin[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mur3::ContactGrasp[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mur3::ContactGrasp[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mur3::ContactGrasp[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mur3::ContactGrasp[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SystemManager.cc:73] [0m[1;36mLoaded system [[0m[1;36mur3::ContactGrasp[0m[1;36m] for entity [[0m[1;36m42[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [UserCommands.cc:1303] [0m[1;36mCreated entity [[0m[1;36m42[0m[1;36m] named [[0m[1;36mur[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mContact system publishing on [0m[1;32mworld/ur3_llm_task_world/model/ur/link/left_finger_link/sensor/left_finger_contact/contact[0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mContact system publishing on [0m[1;32mworld/ur3_llm_task_world/model/ur/link/right_finger_link/sensor/right_finger_contact/contact[0m[1;32m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:610] [0m[1;36mInitialization needed[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:270] [0m[1;36mInitializing render context[0m[1;36m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mLoading plugin [[0m[1;32mignition-rendering-ogre2[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing scene information on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mscene/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing graph information on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mscene/graph[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing full state on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mstate[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mServing full state (async) on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mstate_async[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPublishing scene information on [[0m[1;32m/world/ur3_llm_task_world/scene/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPublishing entity deletions on [[0m[1;32m/world/ur3_llm_task_world/scene/deletion[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPublishing state changes on [[0m[1;32m/world/ur3_llm_task_world/state[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [WARN] [1791181096.580885154] [gz_ros2_control]:  Desired controller update period (0.002 s) is slower than the gazebo simulation period (0.001 s).
+[ign gazebo-4] [INFO] [1791181096.728803500] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[ign gazebo-4] [1;33m[Wrn] [Ogre2Camera.cc:390] [0m[1;33mOgre2Camera::SetVisibilityMask: Mask bits [0m[1;33mc0000000[0m[1;33m are set but will be ignored as they conflict with the [0m[1;33mreserved bits used internally by the ogre2 backend.[0m[1;33m[0m
+[spawner-2] [INFO] [1791181097.894530165] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[ign gazebo-4] [INFO] [1791181097.976768600] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ign gazebo-4] [INFO] [1791181097.976940548] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-2] [INFO] [1791181097.991831556] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-2]: process has finished cleanly [pid 28521]
+[INFO] [spawner-8]: process started with pid [28728]
+[ign gazebo-4] [INFO] [1791181098.487076138] [controller_manager]: Loading controller 'joint_trajectory_controller'
+[ign gazebo-4] [WARN] [1791181098.506570904] [joint_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[spawner-8] [INFO] [1791181098.531479578] [spawner_joint_trajectory_controller]: [94mLoaded [1mjoint_trajectory_controller[0m
+[ign gazebo-4] [INFO] [1791181098.533200522] [controller_manager]: Configuring controller 'joint_trajectory_controller'
+[ign gazebo-4] [INFO] [1791181098.533376032] [joint_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[ign gazebo-4] [INFO] [1791181098.533406063] [joint_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[ign gazebo-4] [INFO] [1791181098.533443358] [joint_trajectory_controller]: Using 'splines' interpolation method.
+[ign gazebo-4] [INFO] [1791181098.534499838] [joint_trajectory_controller]: Controller state will be published at 100.00 Hz.
+[ign gazebo-4] [INFO] [1791181098.536336578] [joint_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[spawner-8] [INFO] [1791181098.549570128] [spawner_joint_trajectory_controller]: [92mConfigured and activated [1mjoint_trajectory_controller[0m
+[INFO] [spawner-8]: process has finished cleanly [pid 28728]
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPublishing pose messages on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mpose/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;32m[Msg] [0m[1;32mPublishing dynamic pose messages on [[0m[1;32m/world/ur3_llm_task_world[0m[1;32m/[0m[1;32mdynamic_pose/info[0m[1;32m][0m[1;32m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:528] [0m[1;36mExiting postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m
+[ign gazebo-4] [Dbg] [SimulationRunner.cc:528] [0m[1;36m[0m
+[ign gazebo-4] [1;36m1[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36mExiting postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:501] [0m[1;36mCreating PostUpdate worker threads: [0m[1;36m5[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:512] [0m[1;36mCreating postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [RenderUtil.cc:2591] [0m[1;36mCreate scene [[0m[1;36mscene[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:284] [0m[1;36mRendering Thread initialized[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:610] [0m[1;36mInitialization needed[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [CameraSensor.cc:394] [0m[1;36mCamera images for [[0m[1;36mtable_camera::camera_link::rgb_camera[0m[1;36m] advertised on [[0m[1;36m/table_camera/image[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [CameraSensor.cc:705] [0m[1;36mCamera info for [[0m[1;36mtable_camera::camera_link::rgb_camera[0m[1;36m] advertised on [[0m[1;36m/table_camera/camera_info[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [CameraSensor.cc:518] [0m[1;36mEnabling camera sensor: '[0m[1;36mtable_camera::camera_link::rgb_camera[0m[1;36m' data [0m[1;36mgeneration.[0m[1;36m[0m
+[INFO] [spawner-9]: process started with pid [28746]
+[ign gazebo-4] [INFO] [1791181112.196272203] [controller_manager]: Loading controller 'gripper_controller'
+[ign gazebo-4] [WARN] [1791181112.208183250] [gripper_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[spawner-9] [INFO] [1791181112.230442868] [spawner_gripper_controller]: [94mLoaded [1mgripper_controller[0m
+[ign gazebo-4] [INFO] [1791181112.231892062] [controller_manager]: Configuring controller 'gripper_controller'
+[ign gazebo-4] [INFO] [1791181112.232051159] [gripper_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[ign gazebo-4] [WARN] [1791181112.232139298] [gripper_controller]: 'ff_velocity_scale' parameters is not defined under 'gains.<joint_name>.' structure. Maybe you are using deprecated format 'ff_velocity_scale/<joint_name>'!
+[ign gazebo-4] [WARN] [1791181112.232313061] [gripper_controller]: 'ff_velocity_scale' parameters is not defined under 'gains.<joint_name>.' structure. Maybe you are using deprecated format 'ff_velocity_scale/<joint_name>'!
+[ign gazebo-4] [INFO] [1791181112.232402318] [gripper_controller]: Command interfaces are [effort] and state interfaces are [position velocity].
+[ign gazebo-4] [INFO] [1791181112.232428228] [gripper_controller]: Using 'splines' interpolation method.
+[ign gazebo-4] [INFO] [1791181112.233005043] [gripper_controller]: Controller state will be published at 50.00 Hz.
+[ign gazebo-4] [INFO] [1791181112.234178785] [gripper_controller]: Action status changes will be monitored at 20.00 Hz.
+[spawner-9] [INFO] [1791181112.246647300] [spawner_gripper_controller]: [92mConfigured and activated [1mgripper_controller[0m
+[INFO] [spawner-9]: process has finished cleanly [pid 28746]
+[INFO] [llm_task_node-10]: process started with pid [28767]
+[llm_task_node-10] [INFO] [1791181135.175770486] [llm_task_planner]: CONTINUOUS READY: receive commands on /llm_command; use ros2 run ur3_llm_control llm_command
+[llm_task_node-10] [INFO] [1791181150.619040532] [llm_task_planner]: USER COMMAND: Put the red cube in zone B.
+[llm_task_node-10] [INFO] [1791181150.904431367] [llm_task_planner]: CAMERA STATE: {"objects": {"red_cube": [0.3398652493241471, -0.22066327288514184, 0.5], "yellow_cube": [0.3398652493241471, 0.0, 0.5], "green_cube": [0.3398652493241471, 0.2198549825082732, 0.5], "blue_cube": [0.5403212627875726, 0.0, 0.5], "purple_cube": [0.5403212627875726, 0.24006224192998948, 0.5]}, "zones": {"zone_a": [], "zone_b": ["blue_cube"], "zone_c": ["purple_cube"]}}
+[llm_task_node-10] [WARN] [1791181150.909153993] [llm_task_planner]: OFFLINE FIXTURE: LLM request bypassed for simulation regression
+[llm_task_node-10] [INFO] [1791181150.910678126] [llm_task_planner]: SYMBOLIC PLAN [offline_fixture]: {"plan": [{"skill": "pick", "object": "red_cube"}, {"skill": "place", "object": "red_cube", "zone": "zone_b"}, {"skill": "home"}]}
+[llm_task_node-10] [INFO] [1791181151.225098724] [llm_task_planner]: VALIDATED EXECUTION PLAN:
+[llm_task_node-10] 1. detect_objects()
+[llm_task_node-10] 2. pick(blue_cube)
+[llm_task_node-10] 3. place(blue_cube, temporary_1)
+[llm_task_node-10] 4. check_zone(zone_b)
+[llm_task_node-10] 5. pick(red_cube)
+[llm_task_node-10] 6. place(red_cube, zone_b)
+[llm_task_node-10] 7. home()
+[llm_task_node-10] [INFO] [1791181151.228334093] [llm_task_planner]: CAMERA-DERIVED BUFFERS: {"temporary_1": [0.55, -0.12499999999999997, 0.5]}
+[llm_task_node-10] [INFO] [1791181151.737063166] [llm_task_planner]: detect_objects(): SUCCESS five blocks detected by RGB camera
+[ign gazebo-4] [INFO] [1791181152.133640905] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181152.133730580] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181153.140789870] [gripper_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181153.206510499] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181153.206713246] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181153.207009091] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181153.207041009] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181153.207113433] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181153.207136900] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181153.208179132] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTstarkConfigDefault]' will use planner 'geometric::RRTstar'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181157.212999135] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181157.213064506] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181157.213180582] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181157.215210431] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181157.215285579] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181157.215319243] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181157.215506276] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181157.216008011] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181157.216105160] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181157.216566527] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181157.216596838] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181161.207728072] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181161.216578002] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181161.218122110] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181161.225616642] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181161.233390956] [llm_task_planner]: Selected approach clearance 0.22 m (joint-motion score 4.448)
+[move_group-6] [INFO] [1791181161.251898524] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181161.251994276] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181161.263909583] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 101 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181161.314427434] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181161.314501256] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181163.981817200] [joint_trajectory_controller]: Goal reached, success!
+[ign gazebo-4] [INFO] [1791181164.016962002] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181164.017013545] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181165.034554245] [gripper_controller]: Goal reached, success!
+[parameter_bridge-7] [INFO] [1791181165.069435329] [ros_gz_bridge]: Passing message from ROS std_msgs/msg/Empty to Gazebo gz.msgs.Empty (showing msg only once per type)
+[llm_task_node-10] [INFO] [1791181165.124468938] [llm_task_planner]: PHYSICS GRASP: blue_cube attached
+[move_group-6] [INFO] [1791181165.143042296] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181165.143175901] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181165.160072245] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 94 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181165.225307062] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181165.225370058] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [1;36m[Dbg] [Physics.cc:1603] [0m[1;36mCreating detachable joint [[0m[1;36m83[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [INFO] [1791181167.523733252] [joint_trajectory_controller]: Goal reached, success!
+[llm_task_node-10] [INFO] [1791181167.541232530] [llm_task_planner]: pick(blue_cube): SUCCESS picked blue_cube
+[move_group-6] [INFO] [1791181167.800749143] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181167.800843079] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181167.801808067] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181167.801849343] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181167.801856327] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181167.801861496] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181167.803470136] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTstarkConfigDefault]' will use planner 'geometric::RRTstar'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181171.807409735] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181171.807454363] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181171.807504159] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181171.809072013] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181171.809150513] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181171.809184386] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181171.809341877] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181171.809683887] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181171.809808413] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181171.810050410] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181171.810067172] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181173.150364794] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181173.160270994] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181173.160736063] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181173.169212346] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181173.177714330] [llm_task_planner]: Selected approach clearance 0.18 m (joint-motion score 1.227)
+[move_group-6] [INFO] [1791181173.196617126] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181173.196695348] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181173.208288829] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 78 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181173.263205176] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181173.263309099] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181175.523076246] [joint_trajectory_controller]: Goal reached, success!
+[ign gazebo-4] [INFO] [1791181175.566851330] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181175.566958675] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181176.569480070] [gripper_controller]: Goal reached, success!
+[llm_task_node-10] [INFO] [1791181176.681431101] [llm_task_planner]: PHYSICS GRASP: blue_cube detached
+[move_group-6] [INFO] [1791181176.696566552] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181176.696647218] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181176.705563218] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 94 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181176.769986835] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181176.770050809] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181179.073347341] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181179.127716208] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181179.127827883] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181179.129390219] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181179.129421717] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181179.129429888] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181179.129437361] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181179.129923033] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181179.150765235] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181179.150795755] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181179.150854491] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181179.151423483] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181179.151477400] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181179.151508828] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181179.151660941] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181179.152554692] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181179.152602463] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181179.152776018] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181179.152791871] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [1;36m[Dbg] [Physics.cc:1757] [0m[1;36mDetaching joint [[0m[1;36m83[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [INFO] [1791181182.555473710] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181182.603245357] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181182.603833695] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181182.611445140] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181182.872249057] [llm_task_planner]: CAMERA VERIFIED: blue_cube at temporary_1: (0.5500207473099965, -0.125285008414641, 0.5)
+[llm_task_node-10] [INFO] [1791181182.880140634] [llm_task_planner]: place(blue_cube, temporary_1): SUCCESS placed blue_cube in temporary_1
+[llm_task_node-10] [INFO] [1791181183.669488402] [llm_task_planner]: check_zone(zone_b): SUCCESS occupants=[]
+[ign gazebo-4] [INFO] [1791181183.965938927] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181183.966025250] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181184.970268289] [gripper_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181185.035146290] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181185.035361679] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181185.035534953] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181185.035558909] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181185.035566870] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181185.035576508] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181185.036422419] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTstarkConfigDefault]' will use planner 'geometric::RRTstar'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181189.039624508] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181189.039660686] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181189.039700425] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181189.041001278] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181189.041031798] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181189.041048420] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181189.041122870] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[move_group-6] [INFO] [1791181189.041497356] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181189.041511603] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181189.041309415] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181189.041353694] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181191.554915273] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181191.591979018] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181191.593559582] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181191.601185904] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181191.612277929] [llm_task_planner]: Selected approach clearance 0.26 m (joint-motion score 2.441)
+[move_group-6] [INFO] [1791181191.617859246] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181191.618125688] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181191.629724757] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 113 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181191.713999118] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181191.714107232] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181194.948103744] [joint_trajectory_controller]: Goal reached, success!
+[ign gazebo-4] [INFO] [1791181194.967322430] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181194.967374531] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181195.992219660] [gripper_controller]: Goal reached, success!
+[llm_task_node-10] [INFO] [1791181196.075898630] [llm_task_planner]: PHYSICS GRASP: red_cube attached
+[move_group-6] [INFO] [1791181196.093389807] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181196.093442257] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181196.111104963] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 96 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [1;36m[Dbg] [Physics.cc:1603] [0m[1;36mCreating detachable joint [[0m[1;36m84[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [INFO] [1791181196.218568801] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181196.218636477] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181198.900425933] [joint_trajectory_controller]: Goal reached, success!
+[llm_task_node-10] [INFO] [1791181198.937885465] [llm_task_planner]: pick(red_cube): SUCCESS picked red_cube
+[move_group-6] [INFO] [1791181199.664193649] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181199.664298550] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181199.665869196] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181199.665906701] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181199.665917177] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181199.665925418] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181199.667614864] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator[RRTstarkConfigDefault]' will use planner 'geometric::RRTstar'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181203.672426438] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181203.672473162] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181203.672504101] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181203.673357554] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181203.673392265] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181203.673415662] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181203.673493813] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181203.673745729] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181203.673823112] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181203.674036266] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181203.674061478] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181206.675849362] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181206.724441008] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181206.725857726] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181206.733516803] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181206.742325248] [llm_task_planner]: Selected approach clearance 0.18 m (joint-motion score 3.857)
+[move_group-6] [INFO] [1791181206.750018128] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181206.750139720] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181206.762342282] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 78 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181206.831265315] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181206.831314693] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181209.144079392] [joint_trajectory_controller]: Goal reached, success!
+[ign gazebo-4] [INFO] [1791181209.186597973] [gripper_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181209.186643439] [gripper_controller]: Accepted new action goal
+[ign gazebo-4] [INFO] [1791181210.187848062] [gripper_controller]: Goal reached, success!
+[llm_task_node-10] [INFO] [1791181210.291371909] [llm_task_planner]: PHYSICS GRASP: red_cube detached
+[move_group-6] [INFO] [1791181210.305987117] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Received request to compute Cartesian path
+[move_group-6] [INFO] [1791181210.306125192] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Attempting to follow 3 waypoints for link 'tool0' using a step of 0.002000 m and jump threshold 0.000000 (in global reference frame)
+[move_group-6] [INFO] [1791181210.313101367] [moveit_move_group_default_capabilities.cartersian_path_service_capability]: Computed Cartesian path with 94 points (followed 100.000000% of requested trajectory)
+[ign gazebo-4] [INFO] [1791181210.382762965] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181210.382813740] [joint_trajectory_controller]: Accepted new action goal
+[ign gazebo-4] [1;36m[Dbg] [Physics.cc:1757] [0m[1;36mDetaching joint [[0m[1;36m84[0m[1;36m][0m[1;36m[0m
+[ign gazebo-4] [INFO] [1791181212.700143017] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181212.741562724] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181212.741726990] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181212.742424139] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181212.742481408] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181212.742495237] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181212.742507110] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181212.743539355] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181212.762933131] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181212.762990331] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181212.763049905] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181212.764567543] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181212.764643809] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181212.764690672] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181212.764881686] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181212.765197226] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181212.765238292] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181212.765399973] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181212.765416456] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181216.712900789] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181216.715632606] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181216.717191869] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181216.724692897] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181217.108159031] [llm_task_planner]: CAMERA VERIFIED: red_cube at zone_b: (0.5403212627875726, 0.0008082903768686514, 0.5)
+[llm_task_node-10] [INFO] [1791181217.112754826] [llm_task_planner]: place(red_cube, zone_b): SUCCESS placed red_cube in zone_b
+[move_group-6] [INFO] [1791181217.114218966] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181217.114311924] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181217.114999296] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181217.115019480] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181217.115028001] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181217.115048324] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181217.115426581] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181217.129859365] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181217.129888908] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181217.129926622] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181217.131074593] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181217.131108466] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181217.131127532] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181217.131201563] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181217.131363244] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181217.131403682] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181217.131584639] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181217.131599515] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181217.408912511] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181217.431815781] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181217.433192620] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181217.441171357] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181217.458059600] [llm_task_planner]: home(): SUCCESS 
+[llm_task_node-10] [INFO] [1791181217.703525319] [llm_task_planner]: TASK SUCCESS — verified by camera
+[llm_task_node-10] [INFO] [1791181218.775893675] [llm_task_planner]: USER COMMAND: This command is deliberately unsupported by offline fixture.
+[llm_task_node-10] [INFO] [1791181219.096797235] [llm_task_planner]: CAMERA STATE: {"objects": {"red_cube": [0.5403212627875726, 0.0008082903768686514, 0.5], "yellow_cube": [0.3398652493241471, 0.0, 0.5], "green_cube": [0.3398652493241471, 0.2198549825082732, 0.5], "blue_cube": [0.5500207473099965, -0.125285008414641, 0.5], "purple_cube": [0.5403212627875726, 0.24006224192998948, 0.5]}, "zones": {"zone_a": [], "zone_b": ["red_cube"], "zone_c": ["purple_cube"]}}
+[llm_task_node-10] [ERROR] [1791181219.109092196] [llm_task_planner]: demo_plan only supports: Put the red cube in zone B.
+[llm_task_node-10] [INFO] [1791181219.116679337] [llm_task_planner]: USER COMMAND: Put the red cube in zone B.
+[llm_task_node-10] [INFO] [1791181219.498820035] [llm_task_planner]: CAMERA STATE: {"objects": {"red_cube": [0.5403212627875726, 0.0008082903768686514, 0.5], "yellow_cube": [0.3398652493241471, 0.0, 0.5], "green_cube": [0.3398652493241471, 0.2198549825082732, 0.5], "blue_cube": [0.5500207473099965, -0.125285008414641, 0.5], "purple_cube": [0.5403212627875726, 0.24006224192998948, 0.5]}, "zones": {"zone_a": [], "zone_b": ["red_cube"], "zone_c": ["purple_cube"]}}
+[llm_task_node-10] [WARN] [1791181219.505759963] [llm_task_planner]: OFFLINE FIXTURE: LLM request bypassed for simulation regression
+[llm_task_node-10] [INFO] [1791181219.514459177] [llm_task_planner]: SYMBOLIC PLAN [offline_fixture]: {"plan": [{"skill": "pick", "object": "red_cube"}, {"skill": "place", "object": "red_cube", "zone": "zone_b"}, {"skill": "home"}]}
+[llm_task_node-10] [INFO] [1791181220.198755406] [llm_task_planner]: VALIDATED EXECUTION PLAN:
+[llm_task_node-10] 1. detect_objects()
+[llm_task_node-10] 2. home()
+[llm_task_node-10] [INFO] [1791181220.207663374] [llm_task_planner]: CAMERA-DERIVED BUFFERS: {}
+[llm_task_node-10] [INFO] [1791181220.518998903] [llm_task_planner]: detect_objects(): SUCCESS five blocks detected by RGB camera
+[move_group-6] [INFO] [1791181220.520420789] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-6] [INFO] [1791181220.520591689] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-6] [INFO] [1791181220.521787152] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-6] [WARN] [1791181220.521812504] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as start state in the motion planning request
+[move_group-6] [WARN] [1791181220.521824796] [moveit_move_group_capabilities_base.move_group_capability]: Execution of motions should always start at the robot's current state. Ignoring the state supplied as difference in the planning scene diff
+[move_group-6] [INFO] [1791181220.521833875] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-6] [INFO] [1791181220.522259554] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'ur_manipulator' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-6] [INFO] [1791181220.535475993] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181220.535538431] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181220.535594233] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-6] [INFO] [1791181220.537035186] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-6] [INFO] [1791181220.537076252] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181220.537101535] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-6] [INFO] [1791181220.537193585] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to joint_trajectory_controller
+[ign gazebo-4] [INFO] [1791181220.537358269] [joint_trajectory_controller]: Received new action goal
+[ign gazebo-4] [INFO] [1791181220.537403875] [joint_trajectory_controller]: Accepted new action goal
+[move_group-6] [INFO] [1791181220.537574007] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: joint_trajectory_controller started execution
+[move_group-6] [INFO] [1791181220.537589861] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[ign gazebo-4] [INFO] [1791181220.824597719] [joint_trajectory_controller]: Goal reached, success!
+[move_group-6] [INFO] [1791181220.837769390] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'joint_trajectory_controller' successfully finished
+[move_group-6] [INFO] [1791181220.838710283] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status SUCCEEDED ...
+[move_group-6] [INFO] [1791181220.847187125] [moveit_move_group_default_capabilities.move_action_capability]: Solution was found and executed.
+[llm_task_node-10] [INFO] [1791181220.862123041] [llm_task_planner]: home(): SUCCESS 
+[llm_task_node-10] [INFO] [1791181221.103040596] [llm_task_planner]: TASK SUCCESS — verified by camera
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT) again, ignoring...
+[INFO] [llm_task_node-10]: sending signal 'SIGINT' to process[llm_task_node-10]
+[INFO] [parameter_bridge-7]: sending signal 'SIGINT' to process[parameter_bridge-7]
+[INFO] [move_group-6]: sending signal 'SIGINT' to process[move_group-6]
+[INFO] [parameter_bridge-5]: sending signal 'SIGINT' to process[parameter_bridge-5]
+[INFO] [ign gazebo-4]: sending signal 'SIGINT' to process[ign gazebo-4]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[robot_state_publisher-1] [INFO] [1791181272.313690026] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[move_group-6] [INFO] [1791181272.313690026] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-5] [INFO] [1791181272.313716845] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[llm_task_node-10] Exception in thread Thread-1 (spin):
+[llm_task_node-10] Traceback (most recent call last):
+[llm_task_node-10]   File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[parameter_bridge-7] [INFO] [1791181272.314075057] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-4] [INFO] [1791181272.318856000] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ign gazebo-4] [INFO] [1791181272.318998685] [controller_manager]: Shutdown request received....
+[ign gazebo-4] [INFO] [1791181272.319104354] [controller_manager]: Shutting down all controllers in the controller manager.
+[ign gazebo-4] [INFO] [1791181272.319162042] [controller_manager]: Deactivating controller 'joint_state_broadcaster'
+[ign gazebo-4] [INFO] [1791181272.319234956] [controller_manager]: Shutting down controller 'joint_state_broadcaster'
+[ign gazebo-4] [INFO] [1791181272.319290340] [controller_manager]: Deactivating controller 'joint_trajectory_controller'
+[ign gazebo-4] [INFO] [1791181272.319346003] [controller_manager]: Shutting down controller 'joint_trajectory_controller'
+[ign gazebo-4] [INFO] [1791181272.319378199] [controller_manager]: Deactivating controller 'gripper_controller'
+[ign gazebo-4] [INFO] [1791181272.319414516] [controller_manager]: Shutting down controller 'gripper_controller'
+[ign gazebo-4] [INFO] [1791181272.319462497] [resource_manager]: 'deactivate' hardware 'gripper_system' 
+[ign gazebo-4] [INFO] [1791181272.319495462] [resource_manager]: Successful 'deactivate' of hardware 'gripper_system'
+[ign gazebo-4] [INFO] [1791181272.319507474] [resource_manager]: 'shutdown' hardware 'gripper_system' 
+[ign gazebo-4] [INFO] [1791181272.319516903] [resource_manager]: Successful 'shutdown' of hardware 'gripper_system'
+[ign gazebo-4] [INFO] [1791181272.319525493] [resource_manager]: 'deactivate' hardware 'ur' 
+[ign gazebo-4] [INFO] [1791181272.319535131] [resource_manager]: Successful 'deactivate' of hardware 'ur'
+[ign gazebo-4] [INFO] [1791181272.319543233] [resource_manager]: 'shutdown' hardware 'ur' 
+[ign gazebo-4] [INFO] [1791181272.319551194] [resource_manager]: Successful 'shutdown' of hardware 'ur'
+[ign gazebo-4] [INFO] [1791181272.319558877] [controller_manager]: Shutting down the controller manager.
+[parameter_bridge-7] [INFO] [1791181272.320557668] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-5] [INFO] [1791181272.323193944] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[llm_task_node-10]     self.run()
+[llm_task_node-10]   File "/usr/lib/python3.10/threading.py", line 953, in run
+[llm_task_node-10]     self._target(*self._args, **self._kwargs)
+[llm_task_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 323, in spin
+[llm_task_node-10]     self.spin_once()
+[llm_task_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 863, in spin_once
+[llm_task_node-10]     self._spin_once_impl(timeout_sec)
+[llm_task_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 844, in _spin_once_impl
+[llm_task_node-10]     handler, entity, node = self.wait_for_ready_callbacks(
+[llm_task_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[llm_task_node-10]     return next(self._cb_iter)
+[llm_task_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 653, in _wait_for_ready_callbacks
+[llm_task_node-10]     wait_set = _rclpy.WaitSet(
+[llm_task_node-10] rclpy._rclpy_pybind11.RCLError: failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+[ERROR] [robot_state_publisher-1]: process has died [pid 28519, exit code -2, cmd '/opt/ros/humble/lib/robot_state_publisher/robot_state_publisher --ros-args --params-file /tmp/launch_params_4rs83dkl --params-file /tmp/launch_params_v0jloc2j'].
+[ERROR] [move_group-6]: process has died [pid 28530, exit code -2, cmd '/opt/ros/humble/lib/moveit_ros_move_group/move_group --ros-args --params-file /tmp/launch_params_qu1kceis --params-file /tmp/launch_params_z940f2cb --params-file /tmp/launch_params_wi5ontbt --params-file /home/linh/workspaces/ur_gz/install/ur3_draw_letter/share/ur3_draw_letter/config/kinematics.yaml --params-file /tmp/launch_params_3h9mopes --params-file /tmp/launch_params_0f3f2hsx --params-file /tmp/launch_params_uwibp87g --params-file /tmp/launch_params_35w28jjr --params-file /tmp/launch_params_hkfha_8p --params-file /tmp/launch_params_pcaqdzsy --params-file /tmp/launch_params_v7ku_996'].
+[move_group-6] [0m
+[INFO] [parameter_bridge-5]: process has finished cleanly [pid 28527]
+[INFO] [parameter_bridge-7]: process has finished cleanly [pid 28532]
+[ign gazebo-4] [1;36m[Dbg] [SignalHandler.cc:141] [0m[1;36mReceived signal[[0m[1;36m2[0m[1;36m].[0m
+[ign gazebo-4] [1;36m[Dbg] [ServerPrivate.cc:110] [0m[1;36mServer received signal[[0m[1;36m2[0m[1;36m][0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:439] [0m[1;36mSensorsPrivate::Stop[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:425] [0m[1;36mSensorsPrivate::RenderThread stopped[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [gz.cc:410] [0m[1;36mShutting down ign-gazebo-server[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:528] [0m[1;36mExiting postupdate worker thread ([0m[1;36m2[0m[1;36m)[0m[1;36m
+[ign gazebo-4] [Dbg] [SimulationRunner.cc:528] [0m[1;36mExiting postupdate worker thread ([0m[1;36m1[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:528] [0m[1;36mExiting postupdate worker thread ([0m[1;36m0[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [SimulationRunner.cc:528] [0m[1;36mExiting postupdate worker thread ([0m[1;36m3[0m[1;36m)[0m[1;36m[0m
+[ign gazebo-4] [1;36m[Dbg] [Sensors.cc:439] [0m[1;36mSensorsPrivate::Stop[0m[1;36m[0m
+[ERROR] [ign gazebo-4]: process has died [pid 28525, exit code -2, cmd 'ruby /usr/bin/ign gazebo  -s -r -v 4 /home/linh/workspaces/ur_gz/install/ur3_llm_control/share/ur3_llm_control/worlds/task_world.sdf --force-version 6'].
+[ERROR] [llm_task_node-10]: process has died [pid 28767, exit code 1, cmd '/home/linh/workspaces/ur_gz/install/ur3_llm_control/lib/ur3_llm_control/llm_task_node --ros-args -r __node:=llm_task_planner --params-file /tmp/launch_params_4qp2s8dy'].

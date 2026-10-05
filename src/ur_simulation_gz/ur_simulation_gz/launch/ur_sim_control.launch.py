@@ -61,9 +61,11 @@ def launch_setup(context, *args, **kwargs):
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
     prefix = LaunchConfiguration("prefix")
-    start_joint_controller = LaunchConfiguration("start_joint_controller")
-    initial_joint_controller = LaunchConfiguration("initial_joint_controller")
-    launch_rviz = LaunchConfiguration("launch_rviz")
+    # Process-exit callbacks can run after an enclosing scoped GroupAction
+    # has popped its launch configuration. Capture delayed arguments here.
+    start_joint_controller = LaunchConfiguration("start_joint_controller").perform(context)
+    initial_joint_controller = LaunchConfiguration("initial_joint_controller").perform(context)
+    launch_rviz = LaunchConfiguration("launch_rviz").perform(context)
     gazebo_gui = LaunchConfiguration("gazebo_gui")
     world_file = LaunchConfiguration("world_file")
 

@@ -1,0 +1,7 @@
+{
+  "interactive_connected": true,
+  "client_exit_kept_server_running": true,
+  "empty_command_rejected": true,
+  "server_sigint_exit_code": 0,
+  "traceback": false
+}

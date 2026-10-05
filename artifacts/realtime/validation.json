@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "planner_source": "offline_fixture",
+  "first_task": {
+    "task_id": "495bc71ccc554b71930c47c26e1a74e0",
+    "state": "SUCCEEDED",
+    "command": "Put the red cube in zone B.",
+    "execution_plan": [
+      {
+        "skill": "detect_objects"
+      },
+      {
+        "skill": "pick",
+        "object": "blue_cube"
+      },
+      {
+        "skill": "place",
+        "object": "blue_cube",
+        "zone": "temporary_1"
+      },
+      {
+        "skill": "check_zone",
+        "zone": "zone_b"
+      },
+      {
+        "skill": "pick",
+        "object": "red_cube"
+      },
+      {
+        "skill": "place",
+        "object": "red_cube",
+        "zone": "zone_b"
+      },
+      {
+        "skill": "home"
+      }
+    ],
+    "planner_source": "offline_fixture",
+    "step": 7,
+    "total_steps": 7,
+    "skill": {
+      "skill": "home"
+    },
+    "error": "",
+    "held_object": null,
+    "evidence_file": "/tmp/llm_continuous_evidence_495bc71ccc554b71930c47c26e1a74e0.json"
+  },
+  "second_task": {
+    "task_id": "7f40ec25b40a446aa5fd92ebc3be4e9a",
+    "state": "SUCCEEDED",
+    "command": "Put the red cube in zone B.",
+    "execution_plan": [
+      {
+        "skill": "detect_objects"
+      },
+      {
+        "skill": "home"
+      }
+    ],
+    "planner_source": "offline_fixture",
+    "step": 2,
+    "total_steps": 2,
+    "skill": {
+      "skill": "home"
+    },
+    "error": "",
+    "held_object": null,
+    "evidence_file": "/tmp/llm_continuous_evidence_7f40ec25b40a446aa5fd92ebc3be4e9a.json"
+  },
+  "busy_rejected": true,
+  "duplicate_not_reexecuted": true,
+  "planning_failure_recovered": true,
+  "first_steps": 7,
+  "second_steps": 2,
+  "second_initial_zone_b": [
+    "red_cube"
+  ],
+  "artifact_files": {
+    "first_task": "first_task.json",
+    "second_task": "second_task.json",
+    "client_log": "client.log",
+    "execution_log": "execution.log"
+  }
+}

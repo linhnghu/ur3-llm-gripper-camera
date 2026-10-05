@@ -1,0 +1,8 @@
+Waiting for continuous command server...
+Connected. Enter a command; exit/quit closes this terminal.
+LLM > Waiting for continuous command server...
+Connected. Enter a command; exit/quit closes this terminal.
+[a49cd788] REJECTED
+  Command must contain 1-1000 characters
+[ros2run]: Process exited with failure 1
+[INFO] [1791181524.761833754] [llm_task_planner]: CONTINUOUS READY: receive commands on /llm_command; use ros2 run ur3_llm_control llm_command

@@ -14,5 +14,8 @@ setup(
     ],
     install_requires=["setuptools"],
     zip_safe=True,
-    entry_points={"console_scripts": ["llm_task_node=ur3_llm_control.llm_task_node:main"]},
+    entry_points={"console_scripts": [
+        "llm_task_node=ur3_llm_control.llm_task_node:main",
+        "llm_command=ur3_llm_control.command_cli:main",
+    ]},
 )

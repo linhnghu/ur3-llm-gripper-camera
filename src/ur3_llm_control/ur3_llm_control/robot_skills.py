@@ -1,9 +1,13 @@
-"""MoveItPy implementation of the fixed, allow-listed robot skills."""
+"""MoveIt action/service implementation of the fixed, allow-listed robot skills."""
 
 import time
 import threading
 import math
-import subprocess
+import copy
+import xml.etree.ElementTree as ET
+from std_msgs.msg import Empty, String
+from .scene_state import SceneError
+from .perception import CameraStateError
 
 from geometry_msgs.msg import Pose, PoseStamped
 from control_msgs.action import FollowJointTrajectory
@@ -15,10 +19,8 @@ from moveit_msgs.msg import (
     CollisionObject,
     Constraints,
     JointConstraint,
-    OrientationConstraint,
     PlanningScene,
     PlanningSceneComponents,
-    PositionConstraint,
 )
 from shape_msgs.msg import SolidPrimitive
 from trajectory_msgs.msg import JointTrajectoryPoint
@@ -29,9 +31,10 @@ from moveit_msgs.srv import (
     GetPlanningScene,
     GetPositionFK,
     GetPositionIK,
+    GetStateValidity,
 )
 
-from .task_validator import VALID_OBJECTS, VALID_ZONES
+from .task_validator import VALID_OBJECTS
 
 
 class SkillResult:
@@ -40,25 +43,8 @@ class SkillResult:
 
 
 class RobotSkills:
-    # Work coordinates in world frame, calibrated for the provided task world.
-    OBJECTS = {
-        "red_cube": (0.34, -0.22, 0.50),
-        "yellow_cube": (0.34, 0.00, 0.50),
-        "blue_cube": (0.34, 0.22, 0.50),
-    }
-    ZONES = {
-        # Place 14 mm above the planning-scene marker; the released cube settles onto it.
-        "zone_a": (0.54, -0.24, 0.526),
-        "zone_b": (0.54, 0.00, 0.526),
-        "zone_c": (0.54, 0.24, 0.526),
-    }
-    ZONE_MARKERS = {
-        "zone_a": (0.54, -0.24, 0.476),
-        "zone_b": (0.54, 0.00, 0.476),
-        "zone_c": (0.54, 0.24, 0.476),
-    }
     HOME = {
-        "shoulder_pan_joint": 0.0,
+        "shoulder_pan_joint": -1.57,
         "shoulder_lift_joint": -1.20,
         "elbow_joint": 1.00,
         "wrist_1_joint": -1.37,
@@ -70,11 +56,32 @@ class RobotSkills:
         "shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",
         "wrist_1_joint", "wrist_2_joint", "wrist_3_joint",
     )
-    def __init__(self, node, group_name="ur_manipulator"):
+    def __init__(self, node, observer, config, buffers=None, group_name="ur_manipulator"):
         self.node = node
         self.group_name = group_name
         self.held_object = None
-        self.object_positions = dict(self.OBJECTS)
+        description = ET.fromstring(node.get_parameter("robot_description").value)
+        self.joint_bounds = {}
+        for joint in description.findall("joint"):
+            limit = joint.find("limit")
+            if limit is not None and joint.get("type") != "continuous":
+                safety = joint.find("safety_controller")
+                self.joint_bounds[joint.get("name")] = (
+                    float(safety.get("soft_lower_limit", limit.get("lower"))) if safety is not None else float(limit.get("lower")),
+                    float(safety.get("soft_upper_limit", limit.get("upper"))) if safety is not None else float(limit.get("upper")))
+        self.observer = observer
+        self.config = config
+        self.destinations = {**config["zones"], **(buffers or {})}
+        self.object_positions = {}
+        self.grasp_states = {}
+        self.grasp_publishers = {}
+        self.grasp_subscriptions = []
+        for name in sorted(VALID_OBJECTS):
+            prefix = f"/ur3_llm/grasp/{name}"
+            self.grasp_subscriptions.append(node.create_subscription(
+                String, prefix + "/state", lambda msg, obj=name: self.grasp_states.update({obj: msg.data}), 10))
+            for verb in ("attach", "detach"):
+                self.grasp_publishers[(name, verb)] = node.create_publisher(Empty, prefix + "/" + verb, 10)
         self.move_client = ActionClient(node, MoveGroup, "/move_action")
         self.cartesian_client = node.create_client(
             GetCartesianPath, "/compute_cartesian_path"
@@ -84,25 +91,44 @@ class RobotSkills:
             FollowJointTrajectory,
             "/joint_trajectory_controller/follow_joint_trajectory",
         )
-        self.scene_publisher = node.create_publisher(PlanningScene, "/planning_scene", 10)
         self.get_scene_client = node.create_client(GetPlanningScene, "/get_planning_scene")
         self.fk_client = node.create_client(GetPositionFK, "/compute_fk")
         self.ik_client = node.create_client(GetPositionIK, "/compute_ik")
+        self.validity_client = node.create_client(GetStateValidity, "/check_state_validity")
         self.apply_scene_client = node.create_client(ApplyPlanningScene, "/apply_planning_scene")
         self.gripper_client = ActionClient(
             node, FollowJointTrajectory, "/gripper_controller/follow_joint_trajectory")
-        time.sleep(1.0)
-        # Fortress initializes each configured DetachableJoint in the attached
-        # state. Release all cubes before the robot starts moving for the task.
-        for name in self.object_positions:
-            if not self._set_gazebo_attachment(name, False):
-                raise RuntimeError(f"Gazebo could not initialize {name} as detached")
-        self._publish_box("worktable", (0.40, 0.0, 0.43), (0.75, 0.85, 0.08))
-        for name, xyz in self.object_positions.items():
-            self._publish_box(name, xyz, (0.06, 0.06, 0.06))
-        for name, xyz in self.ZONE_MARKERS.items():
-            self._publish_box(name, xyz, (0.11, 0.11, 0.012))
-        time.sleep(0.25)
+        self._publish_box("worktable", config["table"]["center"], config["table"]["size"])
+        # Zone markings are paint, not collision geometry.
+
+    def refresh_scene(self, required=None, timeout=20.0):
+        state = self.observer.snapshot(required=required, timeout=timeout)
+        for name, xyz in state.objects.items():
+            if name != self.held_object:
+                self.object_positions[name] = xyz
+                self._publish_box(name, xyz, (0.06, 0.06, 0.06))
+        return state
+
+    def _observe_before_place(self, obj):
+        required = VALID_OBJECTS - {obj}
+        try:
+            return self.refresh_scene(required, timeout=2.0)
+        except CameraStateError as exc:
+            if exc.reason != "missing_objects":
+                # Preserve the normal wait budget for slow/unstable images;
+                # a camera outage does not justify a recovery movement.
+                return self.refresh_scene(required, timeout=18.0)
+            self.node.get_logger().warn(
+                f"CAMERA VIEW RECOVERY: missing {sorted(exc.missing_objects)} while holding {obj}; "
+                "moving to observation pose with collision checking")
+            # The last observed scene and attached body are retained in MoveIt.
+            # Keep the physical grasp intact while clearing the camera's view.
+            result = self._move_to_observation_pose()
+            if result.status != "SUCCESS":
+                raise SceneError("Camera view recovery motion failed: " + result.detail)
+            observed = self.refresh_scene(required)
+            self.node.get_logger().info("CAMERA VIEW RECOVERED: all unheld blocks visible in fresh RGB frames")
+            return observed
 
     def _publish_box(self, name, xyz, size, operation=CollisionObject.ADD):
         obj = CollisionObject()
@@ -120,78 +146,51 @@ class RobotSkills:
         scene = PlanningScene()
         scene.is_diff = True
         scene.world.collision_objects = [obj]
-        self.scene_publisher.publish(scene)
-        time.sleep(0.15)
+        self._apply_scene(scene)
 
-    def _remove_box(self, name):
-        obj = CollisionObject()
-        obj.header.frame_id = "world"
-        obj.id = name
-        obj.operation = CollisionObject.REMOVE
-        scene = PlanningScene()
-        scene.is_diff = True
-        scene.world.collision_objects = [obj]
-        self.scene_publisher.publish(scene)
+    def _apply_scene(self, scene):
+        # Empty RobotState in a scene diff must not clear the held body.
+        scene.robot_state.is_diff = True
+        if not self.apply_scene_client.wait_for_service(timeout_sec=5.0):
+            raise SceneError("MoveIt planning scene service unavailable")
+        request = ApplyPlanningScene.Request()
+        request.scene = scene
+        future = self.apply_scene_client.call_async(request)
+        done = threading.Event()
+        future.add_done_callback(lambda _: done.set())
+        if not done.wait(5.0) or future.exception() or not future.result().success:
+            raise SceneError("MoveIt planning scene update was not acknowledged")
 
     def _set_gazebo_attachment(self, name, attached):
-        """Attach / detach a cube in Gazebo and require the plugin state ack."""
+        """Require acknowledgement from contact-gated physics plugin."""
         verb = "attach" if attached else "detach"
         expected = "attached" if attached else "detached"
-        listener = None
-        try:
-            listener = subprocess.Popen(
-                ["ign", "topic", "-e", "-t", f"/ur3_llm/grasp/{name}/state", "-n", "1"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-            )
-            # Allow Ignition Transport time to establish the state subscription
-            # before publishing the one-shot Empty command.
-            time.sleep(0.5)
-            publish = subprocess.run(
-                ["ign", "topic", "-t", f"/ur3_llm/grasp/{name}/{verb}",
-                 "-m", "ignition.msgs.Empty", "-p", "unused: true"],
-                check=False,
-                capture_output=True,
-                text=True,
-                timeout=4.0,
-            )
-            if publish.returncode != 0:
-                raise RuntimeError((publish.stderr or publish.stdout).strip())
-            try:
-                state, _ = listener.communicate(timeout=6.0)
-            except subprocess.TimeoutExpired as exc:
-                # Keep output received before the deadline; communicate() may
-                # time out while ign-topic is shutting down after its message.
-                partial = getattr(exc, "stdout", None) or getattr(exc, "output", None) or ""
-                if isinstance(partial, bytes):
-                    partial = partial.decode(errors="replace")
-                if listener.poll() is None:
-                    listener.kill()
-                tail, _ = listener.communicate()
-                if isinstance(tail, bytes):
-                    tail = tail.decode(errors="replace")
-                state = partial + (tail or "")
-                if expected not in state:
-                    raise RuntimeError(
-                        f"timed out waiting for {expected} acknowledgement; "
-                        f"received: {state.strip() or 'no state message'}"
-                    ) from exc
-        except (OSError, subprocess.TimeoutExpired, RuntimeError) as exc:
-            if listener is not None and listener.poll() is None:
-                listener.kill()
-                listener.communicate()
-            self.node.get_logger().error(f"Gazebo {verb} failed for {name}: {exc}")
-            return False
-        if expected not in state:
-            self.node.get_logger().error(
-                f"Gazebo did not confirm {name} {verb}: {state.strip() or 'no state received'}"
-            )
-            return False
-        return True
+        self.grasp_states[name] = "pending"
+        publisher = self.grasp_publishers[(name, verb)]
+        deadline = time.monotonic() + 8.0
+        while time.monotonic() < deadline:
+            if publisher.get_subscription_count():
+                publisher.publish(Empty())
+                break
+            time.sleep(0.1)
+        while time.monotonic() < deadline:
+            state = self.grasp_states.get(name, "")
+            if state == expected:
+                self.observer.held_object = name if attached else None
+                self.node.get_logger().info(f"PHYSICS GRASP: {name} {state}")
+                return True
+            if state.startswith("rejected"):
+                self.node.get_logger().error(f"Grasp rejected: {name}: {state}")
+                return False
+            time.sleep(0.05)
+        self.node.get_logger().error(f"No Gazebo {expected} acknowledgement for {name}")
+        return False
 
     def _allow_grasp_contacts(self, obj, allowed):
         """Allow only the target object's expected contacts with the fingers."""
+        return self._allow_contacts(obj, ["left_finger_link", "right_finger_link"], allowed)
+
+    def _allow_contacts(self, obj, links, allowed):
         if not self.get_scene_client.wait_for_service(timeout_sec=3.0):
             self.node.get_logger().error("MoveIt /get_planning_scene is unavailable")
             return False
@@ -215,7 +214,7 @@ class RobotSkills:
             self.node.get_logger().error("MoveIt returned a malformed allowed-collision matrix")
             return False
 
-        for name in (obj, "left_finger_link", "right_finger_link"):
+        for name in (obj, *links):
             if name not in names:
                 for row in rows:
                     row.enabled.append(False)
@@ -225,7 +224,7 @@ class RobotSkills:
                 rows.append(entry)
                 names.append(name)
 
-        for finger in ("left_finger_link", "right_finger_link"):
+        for finger in links:
             i, j = names.index(obj), names.index(finger)
             rows[i].enabled[j] = allowed
             rows[j].enabled[i] = allowed
@@ -233,6 +232,7 @@ class RobotSkills:
         matrix.entry_names = names
         matrix.entry_values = rows
         scene.is_diff = True
+        scene.robot_state.is_diff = True
         apply_request = ApplyPlanningScene.Request()
         apply_request.scene = scene
         apply_future = self.apply_scene_client.call_async(apply_request)
@@ -247,11 +247,8 @@ class RobotSkills:
         scene = PlanningScene()
         scene.is_diff = True
         if attached:
-            world_obj = CollisionObject()
-            world_obj.header.frame_id = "world"
-            world_obj.id = name
-            world_obj.operation = CollisionObject.REMOVE
-            scene.world.collision_objects = [world_obj]
+            # MoveIt automatically removes the matching world object when
+            # adding an attached body. An extra REMOVE makes ApplyScene fail.
             attached_obj = AttachedCollisionObject()
             attached_obj.link_name = "tool0"
             attached_obj.touch_links = ["gripper_base_link", "left_finger_link", "right_finger_link"]
@@ -290,8 +287,7 @@ class RobotSkills:
                 world_obj.primitive_poses = [pose]
                 world_obj.operation = CollisionObject.ADD
                 scene.world.collision_objects = [world_obj]
-        self.scene_publisher.publish(scene)
-        time.sleep(0.15)
+        self._apply_scene(scene)
 
     def _command_gripper(self, position):
         if not self.gripper_client.wait_for_server(timeout_sec=3.0):
@@ -326,6 +322,7 @@ class RobotSkills:
         result_future = future.result().get_result_async()
         result_future.add_done_callback(lambda f: (response.append(f.result()), done.set()))
         if not done.wait(timeout=8.0):
+            future.result().cancel_goal_async()
             return SkillResult("FAILED", "gripper action timed out")
         if response[0].result.error_code != FollowJointTrajectory.Result.SUCCESSFUL:
             return SkillResult("FAILED", "gripper trajectory failed")
@@ -473,6 +470,7 @@ class RobotSkills:
         result_future = handle.get_result_async()
         result_future.add_done_callback(lambda f: (result_box.append(f.result()), done.set()))
         if not done.wait(timeout=45.0):
+            handle.cancel_goal_async()
             return SkillResult("FAILED", "MoveIt motion timed out")
         wrapped = result_box[0]
         if wrapped.result.error_code.val != wrapped.result.error_code.SUCCESS:
@@ -483,6 +481,9 @@ class RobotSkills:
         return SkillResult("SUCCESS")
 
     def home(self):
+        return self._move_to_observation_pose()
+
+    def _move_to_observation_pose(self):
         if not self.move_client.wait_for_server(timeout_sec=5.0):
             return SkillResult("FAILED", "MoveIt /move_action server is unavailable")
         goal = MoveGroup.Goal()
@@ -597,6 +598,15 @@ class RobotSkills:
             return SkillResult("FAILED", "Cartesian path request failed or timed out")
         response = future.result()
         if response.error_code.val != response.error_code.SUCCESS or response.fraction < 0.999:
+            diagnose = GetStateValidity.Request()
+            diagnose.group_name = self.group_name
+            diagnose.robot_state = start_state
+            diagnostic = self.validity_client.call_async(diagnose)
+            diagnostic_done = threading.Event()
+            diagnostic.add_done_callback(lambda _: diagnostic_done.set())
+            if diagnostic_done.wait(3.0) and not diagnostic.exception():
+                contacts = [(c.contact_body_1, c.contact_body_2) for c in diagnostic.result().contacts]
+                self.node.get_logger().error(f"CARTESIAN START CONTACTS: {contacts}")
             return SkillResult(
                 "PLANNING_FAILED",
                 f"Cartesian vertical path incomplete ({response.fraction:.0%}, "
@@ -606,30 +616,43 @@ class RobotSkills:
         trajectory = response.solution.joint_trajectory
         if not trajectory.points:
             return SkillResult("PLANNING_FAILED", "Cartesian descent returned no trajectory")
-        # MoveIt can represent a revolute wrist angle on an equivalent 2*pi
-        # branch from the one reported by ros2_control. Shift each joint's
-        # whole path by the nearest full turn so the first command starts at
-        # the measured position instead of tripping the controller tolerance.
-        current_positions = dict(zip(start_state.joint_state.name,
-                                     start_state.joint_state.position))
-        first_point = trajectory.points[0]
-        for index, joint_name in enumerate(trajectory.joint_names):
-            current = current_positions.get(joint_name)
-            if current is None or index >= len(first_point.positions):
-                continue
-            offset = round((current - first_point.positions[index]) / (2.0 * math.pi))
-            shift = offset * 2.0 * math.pi
-            previous = current
-            for point in trajectory.points:
-                if index >= len(point.positions):
-                    continue
-                position = point.positions[index] + shift
-                # IK may switch to an equivalent revolute-joint branch
-                # between Cartesian samples. Keep the commanded path
-                # continuous so ros2_control never sees a spurious full turn.
-                position += round((previous - position) / (2.0 * math.pi)) * 2.0 * math.pi
-                point.positions[index] = position
-                previous = position
+        # Resolve equivalent revolute branches, then validate the actual values
+        # against URDF limits and MoveIt's current collision scene before execution.
+        current_positions = dict(zip(start_state.joint_state.name, start_state.joint_state.position))
+        previous = [current_positions.get(name) for name in trajectory.joint_names]
+        if not self.validity_client.wait_for_service(timeout_sec=5.0):
+            return SkillResult("FAILED", "MoveIt state validity service unavailable")
+        for point in trajectory.points:
+            for i, name in enumerate(trajectory.joint_names):
+                if previous[i] is None:
+                    return SkillResult("PLANNING_FAILED", "Missing measured Cartesian start joint")
+                point.positions[i] += round((previous[i] - point.positions[i]) / (2 * math.pi)) * 2 * math.pi
+                lower, upper = self.joint_bounds.get(name, (-math.inf, math.inf))
+                if not lower <= point.positions[i] <= upper or abs(point.positions[i] - previous[i]) > 0.35:
+                    return SkillResult("PLANNING_FAILED", f"Joint limit/discontinuity in {name}: "
+                                       f"{previous[i]:.3f} -> {point.positions[i]:.3f}, "
+                                       f"limits [{lower:.3f}, {upper:.3f}]")
+            # Include samples between endpoints when IK is sensitive near a
+            # singular configuration, so a larger valid joint step is checked.
+            samples = max(1, math.ceil(max(abs(q - p) for p, q in zip(previous, point.positions)) / 0.04))
+            for sample in range(1, samples + 1):
+                request_valid = GetStateValidity.Request()
+                request_valid.group_name = self.group_name
+                request_valid.robot_state = copy.deepcopy(start_state)
+                values = dict(zip(trajectory.joint_names, [
+                    p + (q - p) * sample / samples for p, q in zip(previous, point.positions)]))
+                request_valid.robot_state.joint_state.position = [
+                    values.get(name, value) for name, value in zip(
+                        start_state.joint_state.name, start_state.joint_state.position)]
+                validity = self.validity_client.call_async(request_valid)
+                valid_done = threading.Event()
+                validity.add_done_callback(lambda _, event=valid_done: event.set())
+                if not valid_done.wait(3.0) or validity.exception() or not validity.result().valid:
+                    contacts = [] if not validity.done() or validity.exception() else [
+                        (c.contact_body_1, c.contact_body_2, round(c.depth, 6))
+                        for c in validity.result().contacts]
+                    return SkillResult("PLANNING_FAILED", f"Cartesian state failed collision checking: {contacts}")
+            previous = list(point.positions)
         # Slow the computed Cartesian motion while retaining its joint path.
         time_scale = 3.0
         for point in trajectory.points:
@@ -661,6 +684,7 @@ class RobotSkills:
         result_box = []
         result_future.add_done_callback(lambda f: (result_box.append(f.result()), finished.set()))
         if not finished.wait(timeout=60.0):
+            goal_handle[0].cancel_goal_async()
             return SkillResult("FAILED", "Cartesian descent execution timed out")
         result = result_box[0].result
         if result.error_code != FollowJointTrajectory.Result.SUCCESSFUL:
@@ -672,6 +696,7 @@ class RobotSkills:
             return SkillResult("INVALID_OBJECT")
         if self.held_object:
             return SkillResult("FAILED", f"Already holding {self.held_object}")
+        self.refresh_scene()
         x, y, z = self.object_positions[obj]
         opened = self._command_gripper(0.0)
         if opened.status != "SUCCESS":
@@ -691,28 +716,35 @@ class RobotSkills:
         if not self._set_gazebo_attachment(obj, True):
             self._allow_grasp_contacts(obj, False)
             return SkillResult("FAILED", f"Gazebo could not physically attach {obj}")
+        self.held_object = obj
         self._set_attached_box(obj, True)
         if not self._allow_grasp_contacts(obj, False):
-            self._set_attached_box(obj, False, (x, y, z))
-            return SkillResult("FAILED", "Object is attached but grasp collision settings did not reset")
-        self.held_object = obj
+            return SkillResult("FAILED", "Object is physically held but collision settings did not reset")
+        # A supported cube touches the table at the start of the lift. Permit
+        # only this pair during the strictly upward, fixed-x/y movement.
+        if not self._allow_contacts(obj, ["worktable"], True):
+            return SkillResult("FAILED", "Could not allow pickup support contact")
         result = self._cartesian_raise(x, y, z)
+        if not self._allow_contacts(obj, ["worktable"], False):
+            return SkillResult("FAILED", "Could not restore table collision checking after lift")
         return result if result.status != "SUCCESS" else SkillResult("SUCCESS", f"picked {obj}")
 
     def place(self, obj, zone):
         if obj not in VALID_OBJECTS:
             return SkillResult("INVALID_OBJECT")
-        if zone not in VALID_ZONES:
+        if zone not in self.destinations:
             return SkillResult("INVALID_ZONE")
         if self.held_object != obj:
             return SkillResult("FAILED", f"{obj} is not held")
-        x, y, z = self.ZONES[zone]
-        # The destination marker is intentionally close under the placed cube.
-        # Keep the approach planned collision-free, then use the known-clear
-        # vertical release corridor without MoveIt's conservative marker check.
-        result = self._move_above_then_lower(
-            x, y, z, check_descent_collisions=False
-        )
+        state = self._observe_before_place(obj)
+        target = self.destinations[zone]
+        if any(math.dist(p[:2], target[:2]) < 0.12
+               for name, p in state.objects.items() if name != obj):
+            return SkillResult("FAILED", f"Destination {zone} is occupied")
+        x, y, center_z = target
+        z = center_z + 0.012  # Physical release 12 mm above tabletop.
+        # Collision checking stays enabled throughout the descent.
+        result = self._move_above_then_lower(x, y, z)
         if result.status != "SUCCESS":
             return result
         opened = self._command_gripper(0.0)
@@ -720,17 +752,35 @@ class RobotSkills:
             return opened
         if not self._set_gazebo_attachment(obj, False):
             return SkillResult("FAILED", f"Gazebo could not physically release {obj}")
-        self._set_attached_box(obj, False, (x, y, z))
         self.held_object = None
+        self._set_attached_box(obj, False, (x, y, z))
         if not self._allow_grasp_contacts(obj, True):
             return SkillResult("FAILED", "Object released, but gripper exit contact was not enabled")
         result = self._cartesian_raise(x, y, z)
         contacts_reset = self._allow_grasp_contacts(obj, False)
         if not contacts_reset:
             return SkillResult("FAILED", "Object released, but gripper contact settings did not reset")
-        return result if result.status != "SUCCESS" else SkillResult("SUCCESS", f"placed {obj} in {zone}")
+        if result.status != "SUCCESS":
+            return result
+        # Move out of the overhead camera's view before checking the release.
+        result = self.home()
+        if result.status != "SUCCESS":
+            return result
+        observed = self.refresh_scene()
+        actual = observed.objects[obj]
+        if math.dist(actual[:2], target[:2]) > 0.025:
+            return SkillResult("FAILED", f"Camera did not confirm {obj} at {zone}: {actual}")
+        self.node.get_logger().info(f"CAMERA VERIFIED: {obj} at {zone}: {actual}")
+        return SkillResult("SUCCESS", f"placed {obj} in {zone}")
 
     def execute(self, step):
+        if step["skill"] == "detect_objects":
+            self.refresh_scene()
+            return SkillResult("SUCCESS", "five blocks detected by RGB camera")
+        if step["skill"] == "check_zone":
+            state = self.refresh_scene()
+            occupants = state.occupants(step["zone"])
+            return SkillResult("FAILED" if occupants else "SUCCESS", f"occupants={occupants}")
         if step["skill"] == "home":
             return self.home()
         if step["skill"] == "pick":

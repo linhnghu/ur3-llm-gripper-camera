@@ -1,0 +1,7 @@
+# Park the arm beside the workspace so every cube is visible from above.
+shoulder_pan_joint: -1.57
+shoulder_lift_joint: -1.20
+elbow_joint: 1.00
+wrist_1_joint: -1.37
+wrist_2_joint: -1.57
+wrist_3_joint: 0.0

@@ -1,4 +1,4 @@
-# UR3e Simulation: MoveIt 2, Gripper and LLM Task Planning
+# UR3e Simulation: MoveIt 2, Gripper, Camera and LLM Skill Planning
 
 ROS 2 Humble workspace for simulating a UR3e in Gazebo, planning with MoveIt 2,
 and executing language-described pick-and-place tasks. It also contains a
@@ -8,11 +8,24 @@ Cartesian path demo that draws the letter **L**.
 > controller to a physical robot without adding hardware-specific safety
 > checks, workspace limits, and an emergency-stop procedure.
 
+## Bài 03: camera và zone bị chiếm
+
+Xem [hướng dẫn chạy Bài 03](src/ur3_llm_control/README.md) và
+[báo cáo thiết kế](src/ur3_llm_control/REPORT_BAI03.md). World mới có 5 cube, camera RGB
+và physics grasp plugin kiểm tra tiếp xúc hai ngón. Zone B ban đầu có blue cube;
+resolver tự chèn di chuyển blue tới buffer trước khi đặt red vào B.
+Build thêm package `ur3_grasp_plugin` trước khi chạy launch LLM.
+
+Có thể nhập lệnh liên tục trong cùng một phiên bằng `continuous:=true` và
+`ros2 run ur3_llm_control llm_command`; xem
+[hướng dẫn kết nối và nhập lệnh](src/ur3_llm_control/README.md#nhập-lệnh-liên-tục-khi-mô-phỏng-đang-chạy).
+
 ## What is included
 
 - `src/ur3_draw_letter`: UR3e description/configuration, a two-finger simulated
   gripper, and a MoveIt Cartesian letter-drawing demo.
-- `src/ur3_llm_control`: LLM planner, strict plan validator, robot skills,
+- `src/ur3_grasp_plugin`: contact-gated Gazebo physics grasp constraints.
+- `src/ur3_llm_control`: RGB perception, occupied-zone resolver, LLM planner, validators, robot skills,
   Gazebo task world, and the combined simulation/MoveIt launch file.
 - `src/ur_simulation_gz`: Gazebo simulation and MoveIt launch support for
   Universal Robots, included as source files in this repository.
@@ -105,7 +118,7 @@ ros2 launch ur3_llm_control llm_robot.launch.py \
 
 The launch starts Gazebo, MoveIt, and the gripper controller. The task node is
 delayed until those services have time to start. To ask the planner to sort
-all three cubes by the student-ID mapping:
+the three mapped cubes by the student-ID mapping:
 
 ```bash
 ros2 launch ur3_llm_control llm_robot.launch.py \
@@ -120,7 +133,7 @@ To inspect planning and validation without moving the simulated robot, add
 
 - `src/ur3_llm_control/config/student_config.yaml`: student identity and
   coursework mapping.
-- `src/ur3_llm_control/config/scene.yaml`: object, zone, and table coordinates.
+- `src/ur3_llm_control/config/scene.yaml`: fixed camera/zone/table calibration; object poses are detected from RGB images.
 - `src/ur3_llm_control/worlds/task_world.sdf`: Gazebo objects and task world.
 - `src/ur3_draw_letter/urdf/ur.urdf.xacro`: UR3e mount and simulated gripper.
 - `src/ur3_draw_letter/config/ur_controllers.yaml`: arm and gripper controllers.
@@ -143,4 +156,4 @@ shell environment or a local secret manager and do not commit them.
 
 ## Repository
 
-GitHub: <https://github.com/linhnghu/ur3-llm-control>
+GitHub: <https://github.com/linhnghu/ur3-llm-gripper-camera>

@@ -49,6 +49,7 @@
    <xacro:arg name="fake_sensor_commands" default="false" />
    <xacro:arg name="sim_gazebo" default="false" />
    <xacro:arg name="sim_ignition" default="false" />
+   <xacro:arg name="enable_contact_grasp" default="false" />
    <xacro:arg name="simulation_controllers" default="" />
 
    <!-- initial position for simulations (Fake Hardware, Gazebo, Ignition) -->
@@ -173,12 +174,12 @@
      <ros2_control name="gripper_system" type="system">
        <hardware><plugin>ign_ros2_control/IgnitionSystem</plugin></hardware>
        <joint name="left_finger_joint">
-         <command_interface name="position"><param name="min">0</param><param name="max">0.034</param></command_interface>
+         <command_interface name="effort"><param name="min">-25</param><param name="max">25</param></command_interface>
          <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
          <state_interface name="velocity"/>
        </joint>
        <joint name="right_finger_joint">
-         <command_interface name="position"><param name="min">0</param><param name="max">0.034</param></command_interface>
+         <command_interface name="effort"><param name="min">-25</param><param name="max">25</param></command_interface>
          <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
          <state_interface name="velocity"/>
        </joint>
@@ -186,9 +187,17 @@
    </xacro:if>
 
    <gazebo reference="left_finger_link">
+     <sensor name="left_finger_contact" type="contact">
+       <always_on>true</always_on><update_rate>100</update_rate>
+       <contact><collision>left_finger_link_collision</collision></contact>
+     </sensor>
      <mu1>3.0</mu1><mu2>3.0</mu2><kp>1000000.0</kp><kd>100.0</kd>
    </gazebo>
    <gazebo reference="right_finger_link">
+     <sensor name="right_finger_contact" type="contact">
+       <always_on>true</always_on><update_rate>100</update_rate>
+       <contact><collision>right_finger_link_collision</collision></contact>
+     </sensor>
      <mu1>3.0</mu1><mu2>3.0</mu2><kp>1000000.0</kp><kd>100.0</kd>
    </gazebo>
 
@@ -214,35 +223,19 @@
         <position_proportional_gain>0.5</position_proportional_gain>
         <controller_manager_node_name>$(arg tf_prefix)controller_manager</controller_manager_node_name>
       </plugin>
-      <!-- tool0 is a fixed URDF frame and is lumped by Gazebo; wrist_3_link
-           is the actual physics link to which the grasped object is attached. -->
-      <plugin filename="ignition-gazebo-detachable-joint-system"
-              name="ignition::gazebo::systems::DetachableJoint">
-        <parent_link>wrist_3_link</parent_link>
-        <child_model>red_cube</child_model>
-        <child_link>link</child_link>
-        <attach_topic>/ur3_llm/grasp/red_cube/attach</attach_topic>
-        <detach_topic>/ur3_llm/grasp/red_cube/detach</detach_topic>
-        <output_topic>/ur3_llm/grasp/red_cube/state</output_topic>
-      </plugin>
-      <plugin filename="ignition-gazebo-detachable-joint-system"
-              name="ignition::gazebo::systems::DetachableJoint">
-        <parent_link>wrist_3_link</parent_link>
-        <child_model>yellow_cube</child_model>
-        <child_link>link</child_link>
-        <attach_topic>/ur3_llm/grasp/yellow_cube/attach</attach_topic>
-        <detach_topic>/ur3_llm/grasp/yellow_cube/detach</detach_topic>
-        <output_topic>/ur3_llm/grasp/yellow_cube/state</output_topic>
-      </plugin>
-      <plugin filename="ignition-gazebo-detachable-joint-system"
-              name="ignition::gazebo::systems::DetachableJoint">
-        <parent_link>wrist_3_link</parent_link>
-        <child_model>blue_cube</child_model>
-        <child_link>link</child_link>
-        <attach_topic>/ur3_llm/grasp/blue_cube/attach</attach_topic>
-        <detach_topic>/ur3_llm/grasp/blue_cube/detach</detach_topic>
-        <output_topic>/ur3_llm/grasp/blue_cube/state</output_topic>
-      </plugin>
+      <!-- Physics constraint only after both fingers contact the selected cube. -->
+      <xacro:macro name="contact_grasp" params="object">
+        <plugin filename="libur3_contact_grasp.so" name="ur3::ContactGrasp">
+          <child_model>${object}</child_model>
+        </plugin>
+      </xacro:macro>
+      <xacro:if value="$(arg enable_contact_grasp)">
+        <xacro:contact_grasp object="red_cube"/>
+        <xacro:contact_grasp object="yellow_cube"/>
+        <xacro:contact_grasp object="blue_cube"/>
+        <xacro:contact_grasp object="green_cube"/>
+        <xacro:contact_grasp object="purple_cube"/>
+      </xacro:if>
     </gazebo>
   </xacro:if>
 

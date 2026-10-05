@@ -1,0 +1,97 @@
+{
+  "fixture": "deterministic HTTP; not an actual LLM",
+  "tasks": [
+    {
+      "task_id": "19e9da4c0d4649c0a84abdeedac7dd6e",
+      "state": "SUCCEEDED",
+      "command": "put red to zone a",
+      "execution_plan": [
+        {
+          "skill": "detect_objects"
+        },
+        {
+          "skill": "check_zone",
+          "zone": "zone_a"
+        },
+        {
+          "skill": "pick",
+          "object": "red_cube"
+        },
+        {
+          "skill": "place",
+          "object": "red_cube",
+          "zone": "zone_a"
+        },
+        {
+          "skill": "home"
+        }
+      ],
+      "planner_source": "LLM",
+      "step": 5,
+      "total_steps": 5,
+      "skill": {
+        "skill": "home"
+      },
+      "error": "",
+      "held_object": null,
+      "evidence_file": "/tmp/camera_after_task_19e9da4c0d4649c0a84abdeedac7dd6e.json"
+    },
+    {
+      "task_id": "3b930dfcbbb949a5a4eb4dda5308ea61",
+      "state": "SUCCEEDED",
+      "command": "swap red and blue",
+      "execution_plan": [
+        {
+          "skill": "detect_objects"
+        },
+        {
+          "skill": "pick",
+          "object": "blue_cube"
+        },
+        {
+          "skill": "place",
+          "object": "blue_cube",
+          "zone": "temporary_1"
+        },
+        {
+          "skill": "check_zone",
+          "zone": "zone_b"
+        },
+        {
+          "skill": "pick",
+          "object": "red_cube"
+        },
+        {
+          "skill": "place",
+          "object": "red_cube",
+          "zone": "zone_b"
+        },
+        {
+          "skill": "check_zone",
+          "zone": "zone_a"
+        },
+        {
+          "skill": "pick",
+          "object": "blue_cube"
+        },
+        {
+          "skill": "place",
+          "object": "blue_cube",
+          "zone": "zone_a"
+        },
+        {
+          "skill": "home"
+        }
+      ],
+      "planner_source": "LLM",
+      "step": 10,
+      "total_steps": 10,
+      "skill": {
+        "skill": "home"
+      },
+      "error": "",
+      "held_object": null,
+      "evidence_file": "/tmp/camera_after_task_3b930dfcbbb949a5a4eb4dda5308ea61.json"
+    }
+  ]
+}

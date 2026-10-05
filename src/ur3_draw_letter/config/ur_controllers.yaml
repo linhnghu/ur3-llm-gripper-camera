@@ -93,10 +93,13 @@ gripper_controller:
       - left_finger_joint
       - right_finger_joint
     command_interfaces:
-      - position
+      - effort
     state_interfaces:
       - position
       - velocity
+    gains:
+      left_finger_joint: {p: 1200.0, i: 0.0, d: 8.0, i_clamp: 0.0}
+      right_finger_joint: {p: 1200.0, i: 0.0, d: 8.0, i_clamp: 0.0}
     state_publish_rate: 50.0
     action_monitor_rate: 20.0
     allow_partial_joints_goal: false

@@ -1,0 +1,2 @@
+# Preserve original ROS/Gazebo diagnostic logs, including their whitespace.
+artifacts/**/*.log -whitespace

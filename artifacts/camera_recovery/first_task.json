@@ -1,0 +1,152 @@
+{
+  "success": true,
+  "steps": [
+    {
+      "skill": "detect_objects",
+      "status": "SUCCESS",
+      "detail": "five blocks detected by RGB camera"
+    },
+    {
+      "skill": "check_zone",
+      "zone": "zone_a",
+      "status": "SUCCESS",
+      "detail": "occupants=[]"
+    },
+    {
+      "skill": "pick",
+      "object": "red_cube",
+      "status": "SUCCESS",
+      "detail": "picked red_cube"
+    },
+    {
+      "skill": "place",
+      "object": "red_cube",
+      "zone": "zone_a",
+      "status": "SUCCESS",
+      "detail": "placed red_cube in zone_a"
+    },
+    {
+      "skill": "home",
+      "status": "SUCCESS",
+      "detail": ""
+    }
+  ],
+  "task_id": "19e9da4c0d4649c0a84abdeedac7dd6e",
+  "command": "put red to zone a",
+  "initial_camera_state": {
+    "objects": {
+      "red_cube": [
+        0.3398652493241471,
+        -0.22066327288514184,
+        0.5
+      ],
+      "yellow_cube": [
+        0.3398652493241471,
+        0.0,
+        0.5
+      ],
+      "green_cube": [
+        0.3398652493241471,
+        0.2198549825082732,
+        0.5
+      ],
+      "blue_cube": [
+        0.5403212627875726,
+        0.0,
+        0.5
+      ],
+      "purple_cube": [
+        0.5403212627875726,
+        0.24006224192998948,
+        0.5
+      ]
+    },
+    "zones": {
+      "zone_a": [],
+      "zone_b": [
+        "blue_cube"
+      ],
+      "zone_c": [
+        "purple_cube"
+      ]
+    }
+  },
+  "planner_source": "LLM",
+  "llm_plan": [
+    {
+      "skill": "pick",
+      "object": "red_cube"
+    },
+    {
+      "skill": "place",
+      "object": "red_cube",
+      "zone": "zone_a"
+    },
+    {
+      "skill": "home"
+    }
+  ],
+  "execution_plan": [
+    {
+      "skill": "detect_objects"
+    },
+    {
+      "skill": "check_zone",
+      "zone": "zone_a"
+    },
+    {
+      "skill": "pick",
+      "object": "red_cube"
+    },
+    {
+      "skill": "place",
+      "object": "red_cube",
+      "zone": "zone_a"
+    },
+    {
+      "skill": "home"
+    }
+  ],
+  "buffers": {},
+  "final_camera_state": {
+    "objects": {
+      "red_cube": [
+        0.5403212627875726,
+        -0.24006224192998948,
+        0.5
+      ],
+      "yellow_cube": [
+        0.3398652493241471,
+        0.0,
+        0.5
+      ],
+      "green_cube": [
+        0.3398652493241471,
+        0.2198549825082732,
+        0.5
+      ],
+      "blue_cube": [
+        0.5403212627875726,
+        0.0,
+        0.5
+      ],
+      "purple_cube": [
+        0.5403212627875726,
+        0.24006224192998948,
+        0.5
+      ]
+    },
+    "zones": {
+      "zone_a": [
+        "red_cube"
+      ],
+      "zone_b": [
+        "blue_cube"
+      ],
+      "zone_c": [
+        "purple_cube"
+      ]
+    }
+  },
+  "evidence_file": "/tmp/camera_after_task_19e9da4c0d4649c0a84abdeedac7dd6e.json"
+}

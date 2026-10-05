@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "steps": [
+    {
+      "skill": "detect_objects",
+      "status": "SUCCESS",
+      "detail": "five blocks detected by RGB camera"
+    },
+    {
+      "skill": "home",
+      "status": "SUCCESS",
+      "detail": ""
+    }
+  ],
+  "task_id": "7f40ec25b40a446aa5fd92ebc3be4e9a",
+  "command": "Put the red cube in zone B.",
+  "initial_camera_state": {
+    "objects": {
+      "red_cube": [
+        0.5403212627875726,
+        0.0008082903768686514,
+        0.5
+      ],
+      "yellow_cube": [
+        0.3398652493241471,
+        0.0,
+        0.5
+      ],
+      "green_cube": [
+        0.3398652493241471,
+        0.2198549825082732,
+        0.5
+      ],
+      "blue_cube": [
+        0.5500207473099965,
+        -0.125285008414641,
+        0.5
+      ],
+      "purple_cube": [
+        0.5403212627875726,
+        0.24006224192998948,
+        0.5
+      ]
+    },
+    "zones": {
+      "zone_a": [],
+      "zone_b": [
+        "red_cube"
+      ],
+      "zone_c": [
+        "purple_cube"
+      ]
+    }
+  },
+  "planner_source": "offline_fixture",
+  "llm_plan": [
+    {
+      "skill": "pick",
+      "object": "red_cube"
+    },
+    {
+      "skill": "place",
+      "object": "red_cube",
+      "zone": "zone_b"
+    },
+    {
+      "skill": "home"
+    }
+  ],
+  "execution_plan": [
+    {
+      "skill": "detect_objects"
+    },
+    {
+      "skill": "home"
+    }
+  ],
+  "buffers": {},
+  "final_camera_state": {
+    "objects": {
+      "red_cube": [
+        0.5403212627875726,
+        0.0008082903768686514,
+        0.5
+      ],
+      "yellow_cube": [
+        0.3398652493241471,
+        0.0,
+        0.5
+      ],
+      "green_cube": [
+        0.3398652493241471,
+        0.2198549825082732,
+        0.5
+      ],
+      "blue_cube": [
+        0.5500207473099965,
+        -0.125285008414641,
+        0.5
+      ],
+      "purple_cube": [
+        0.5403212627875726,
+        0.24006224192998948,
+        0.5
+      ]
+    },
+    "zones": {
+      "zone_a": [],
+      "zone_b": [
+        "red_cube"
+      ],
+      "zone_c": [
+        "purple_cube"
+      ]
+    }
+  },
+  "evidence_file": "/tmp/llm_continuous_evidence_7f40ec25b40a446aa5fd92ebc3be4e9a.json"
+}

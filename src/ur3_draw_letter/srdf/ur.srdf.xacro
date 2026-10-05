@@ -9,4 +9,10 @@
   <!-- The gripper base is mounted directly on tool0; its collision volume
        intentionally touches/overlaps the wrist housing at this fixed joint. -->
   <disable_collisions link1="gripper_base_link" link2="wrist_3_link" reason="Adjacent"/>
+  <!-- Fixed gripper mounting makes these adjacent to the wrist housing;
+       the finger roots touch its rim by less than 0.1 mm when closed. -->
+  <disable_collisions link1="left_finger_link" link2="wrist_3_link" reason="Adjacent"/>
+  <disable_collisions link1="right_finger_link" link2="wrist_3_link" reason="Adjacent"/>
+  <disable_collisions link1="left_finger_link" link2="gripper_base_link" reason="Adjacent"/>
+  <disable_collisions link1="right_finger_link" link2="gripper_base_link" reason="Adjacent"/>
 </robot>

@@ -1,11 +1,17 @@
-objects:
-  red_cube: [0.34, -0.22, 0.50]
-  yellow_cube: [0.34, 0.00, 0.50]
-  blue_cube: [0.34, 0.22, 0.50]
-zones:
-  zone_a: [0.54, -0.24, 0.476]
-  zone_b: [0.54, 0.00, 0.476]
-  zone_c: [0.54, 0.24, 0.476]
+# Fixed fixtures and camera calibration only. Object poses come from images.
 table:
   center: [0.40, 0.0, 0.43]
   size: [0.75, 0.85, 0.08]
+cube_size: 0.06
+zones:
+  zone_a: [0.54, -0.24, 0.50]
+  zone_b: [0.54, 0.00, 0.50]
+  zone_c: [0.54, 0.24, 0.50]
+zone_half_size: 0.055
+buffer_bounds: [0.30, 0.55, -0.30, 0.30]
+camera:
+  position: [0.47, 0.0, 1.65]
+  horizontal_fov: 1.0471975512
+  width: 800
+  height: 800
+  image_topic: /table_camera/image
