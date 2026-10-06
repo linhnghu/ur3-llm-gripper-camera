@@ -170,21 +170,16 @@ mapping**; hai cube còn lại có thể được dọn nếu chắn zone đích
 | `execute` | `true` | Thực thi sau khi kiểm tra plan |
 | `endpoint` | `https://9router.com/v1/chat/completions` | API chat completions |
 | `model` | `gpt-4o-mini` | Model ID gửi tới gateway |
-| `student_id` | `23020749` | MSSV dùng để tính mapping |
 | `gazebo_gui`, `launch_rviz` | `true` | Hiển thị Gazebo và RViz |
 | `record_path` | Rỗng | Đường dẫn video camera `.mp4` |
 | `evidence_path` | Rỗng | Đường dẫn JSON kết quả; chế độ liên tục thêm task ID vào tên file |
 
-Endpoint/model mặc định là cấu hình của code; cần chọn giá trị được dịch vụ
-của bạn hỗ trợ. Đổi MSSV bằng `student_id:=...` khi launch.
-`config/student_config.yaml` là thông tin sinh viên/báo cáo, không được planner
 đọc để cấu hình runtime.
 
 Các file thường cần chỉnh nằm trong `src/ur3_llm_control`:
 
 - [worlds/task_world.sdf](src/ur3_llm_control/worlds/task_world.sdf): vị trí khởi tạo vật và mô hình Gazebo. Sửa world cần khởi động lại mô phỏng.
 - [config/scene.yaml](src/ur3_llm_control/config/scene.yaml): hiệu chuẩn camera, kích thước bàn/cube, zone và miền tìm buffer. Thay camera/bàn/zone cần cập nhật cấu hình tương ứng.
-- [config/student_config.yaml](src/ur3_llm_control/config/student_config.yaml): thông tin sinh viên để hoàn thiện báo cáo.
 
 ## 5. Mã nguồn và bằng chứng demo
 
